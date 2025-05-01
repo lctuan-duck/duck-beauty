@@ -42,4 +42,8 @@ export default defineNuxtConfig({
       strictMessage: false,
     },
   },
+  extends: [
+    "./layers", // Layer cục bộ
+    "./layers/example-layer", // Layer cục bộ khác
+  ],
 });

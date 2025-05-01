@@ -1,0 +1,12 @@
+{
+  "appNail": {
+    "title": "App Nail",
+    "description": "A simple app to demonstrate the use of the App Nail layer.",
+    "page": {},
+    "components": {
+      "mobile": {},
+      "desktop": {},
+      "platform": {}
+    }
+  }
+}

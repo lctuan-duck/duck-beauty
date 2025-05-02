@@ -1,3 +1,55 @@
 {
-  
+  "appLanding": {
+    "page": {
+      "index": {
+        "hero": {
+          "title": "Coffee for the soul, beautiful nails for the spirit!",
+          "subtitle": "Elevate your style and confidence with DuckBeauty’s professional beauty services.",
+          "cta": "Book an Appointment",
+          "hotlineLabel": "Call now (0123) 456 – 789",
+          "hotlineSub": "We’re always here to help"
+        },
+        "features": {
+          "support": {
+            "title": "24/7 Support",
+            "desc": "Always by your side in your beauty journey."
+          },
+          "experts": {
+            "title": "Dedicated Experts",
+            "desc": "A team of experienced professionals passionate about beauty."
+          },
+          "team": {
+            "title": "Effective Teamwork",
+            "desc": "Ensuring consistent and professional service quality."
+          }
+        },
+        "footer": {
+          "about": {
+            "title": "DuckBeauty",
+            "desc": "A beauty-focused platform for nail and spa salons. Where your unique style and beauty are celebrated."
+          },
+          "quickLinks": {
+            "title": "Quick Links",
+            "home": "Home",
+            "services": "Services",
+            "careers": "Careers",
+            "pricing": "Pricing"
+          },
+          "services": {
+            "title": "Services",
+            "nails": "Nail Services",
+            "spa": "Relaxing Spa",
+            "makeup": "Makeup",
+            "skincare": "Skincare"
+          },
+          "newsletter": {
+            "title": "Subscribe to Newsletter",
+            "desc": "Get promotions and beauty tips from DuckBeauty",
+            "placeholder": "Your email"
+          },
+          "copyright": "© 2025 DuckBeauty. All rights reserved."
+        }
+      }
+    }
+  }
 }

@@ -1,1 +1,55 @@
-{}
+{
+  "appLanding": {
+    "page": {
+      "index": {
+        "hero": {
+          "title": "Cà phê cho tâm hồn, nail đẹp cho tinh thần!",
+          "subtitle": "Nâng tầm phong cách và sự tự tin với dịch vụ làm đẹp chuyên nghiệp của DuckBeauty.",
+          "cta": "Đặt lịch hẹn",
+          "hotlineLabel": "Gọi ngay (0123) 456 – 789",
+          "hotlineSub": "Chúng tôi luôn sẵn sàng tư vấn"
+        },
+        "features": {
+          "support": {
+            "title": "Hỗ trợ 24/7",
+            "desc": "Luôn đồng hành cùng bạn trong hành trình làm đẹp."
+          },
+          "experts": {
+            "title": "Chuyên viên tận tâm",
+            "desc": "Đội ngũ chuyên viên nhiều kinh nghiệm, tận tâm với nghề."
+          },
+          "team": {
+            "title": "Làm việc nhóm hiệu quả",
+            "desc": "Đảm bảo chất lượng dịch vụ đồng nhất và chuyên nghiệp."
+          }
+        },
+        "footer": {
+          "about": {
+            "title": "DuckBeauty",
+            "desc": "Chuyên trang làm đẹp cho tiệm Nail và Spa. Nơi tôn vinh vẻ đẹp và phong cách riêng của bạn."
+          },
+          "quickLinks": {
+            "title": "Liên kết nhanh",
+            "home": "Trang chủ",
+            "services": "Dịch vụ",
+            "careers": "Tuyển dụng",
+            "pricing": "Bảng giá"
+          },
+          "services": {
+            "title": "Dịch vụ",
+            "nails": "Làm móng",
+            "spa": "Spa thư giãn",
+            "makeup": "Trang điểm",
+            "skincare": "Chăm sóc da"
+          },
+          "newsletter": {
+            "title": "Đăng ký nhận tin",
+            "desc": "Nhận khuyến mãi và mẹo làm đẹp từ DuckBeauty",
+            "placeholder": "Email của bạn"
+          },
+          "copyright": "© 2025 DuckBeauty. Đã đăng ký bản quyền."
+        }
+      }
+    }
+  }
+}

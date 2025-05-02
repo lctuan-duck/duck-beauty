@@ -2,6 +2,33 @@ import { registerManualViteConfig } from "./.configs";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      link: [
+        {
+          rel: "icon",
+          type: "image/png",
+          href: "/images/logo.png",
+          sizes: "96x96",
+        },
+        {
+          rel: "icon",
+          type: "image/svg+xml",
+          href: "/svg/logo.svg",
+        },
+        {
+          rel: "shortcut icon",
+          href: "/logo.ico",
+        },
+        {
+          rel: "apple-touch-icon",
+          sizes: "180x180",
+          href: "/images/logo-label.png",
+        },
+        // { rel: "manifest", href: "/site.webmanifest" },
+      ],
+    },
+  },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   future: {

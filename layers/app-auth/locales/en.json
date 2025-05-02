@@ -1,0 +1,77 @@
+{
+  "appAuth": {
+    "title": "Application Authentication Layer",
+    "description": "This is a layer for application authentication.",
+    "page": {
+      "signin": {
+        "title": "Sign In",
+        "subtitle": "Discover your beauty starting from your fingers.",
+        "social": "Sign in with your social account",
+        "divider": "Or",
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "Enter your password"
+        },
+        "forgotPassword": {
+          "label": "Quên mật khẩu?"
+        },
+        "submit": "Sign In",
+        "footerText": "Don't have an account?",
+        "footerAction": "Sign up",
+        "toastSuccess": {
+          "title": "Success",
+          "description": "The form has been submitted."
+        },
+        "validation": {
+          "email": "Invalid email address",
+          "password": "Password must be at least 8 characters"
+        }
+      },
+      "signUp": {
+        "title": "Sign Up",
+        "subtitle": "Join us to experience professional nail care services",
+        "social": "Sign up with a social media account",
+        "divider": "Or",
+        "username": {
+          "label": "Username",
+          "placeholder": "Enter your username"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "Enter your password"
+        },
+        "confirmPassword": {
+          "label": "Confirm Password",
+          "placeholder": "Re-enter your password"
+        },
+        "submit": "Sign Up",
+        "footerText": "Already have an account?",
+        "footerAction": "Sign In",
+        "toastSuccess": {
+          "title": "Success",
+          "description": "The form has been submitted."
+        },
+        "validation": {
+          "username": "Invalid username",
+          "email": "Invalid email",
+          "minLength": "Minimum length must be {length} characters",
+          "maxLength": "Maximum length must be {length} characters",
+          "passwordMatch": "Passwords do not match"
+        }
+      }
+    },
+    "components": {
+      "mobile": {},
+      "desktop": {},
+      "platform": {}
+    }
+  }
+}

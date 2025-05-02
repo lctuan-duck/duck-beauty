@@ -68,8 +68,8 @@ const itemsComputed = computed<NavigationMenuItem[]>(() => [
         </UButton>
       </ClientOnly>
       <!-- button signin/signup -->
-      <UButton label="Đăng nhập" variant="ghost" size="lg" />
-      <UButton label="Đăng kí" size="lg" />
+      <UButton label="Đăng nhập" variant="ghost" size="lg" to="/auth/signin" />
+      <UButton label="Đăng kí" size="lg" to="/auth/signup" />
     </DuckBox>
   </DuckBox>
   <!-- main -->

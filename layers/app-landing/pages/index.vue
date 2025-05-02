@@ -15,13 +15,10 @@ const { t } = useI18n();
     <!-- Hero Section -->
     <DuckBox
       as="section"
-      class="flex flex-col-reverse md:flex-row items-center justify-between px-8 py-4 bg-white"
+      class="flex flex-col-reverse md:flex-row items-center justify-between px-8 py-4"
     >
       <DuckBox class="w-full md:w-1/2 space-y-6">
-        <DuckText
-          as="h1"
-          class="text-4xl md:text-5xl font-bold leading-tight text-gray-900"
-        >
+        <DuckText as="h1" class="text-4xl md:text-5xl font-bold leading-tight">
           {{ t("appLanding.page.index.hero.title") }}
         </DuckText>
         <DuckText class="text-[var(--ui-text-muted)]">
@@ -32,7 +29,7 @@ const { t } = useI18n();
         >
           <UButton :label="t('appLanding.page.index.hero.cta')" size="xl" />
           <DuckBox>
-            <DuckText class="font-semibold text-gray-900">
+            <DuckText class="font-semibold">
               {{ t("appLanding.page.index.hero.hotlineLabel") }}
             </DuckText>
             <DuckText class="text-sm text-[var(--ui-text-muted)]">
@@ -142,14 +139,11 @@ const { t } = useI18n();
     </DuckBox>
   </DuckBox>
   <!-- Footer -->
-  <DuckBox as="footer" class="px-8 py-12 bg-gray-100 mt-16">
+  <DuckBox as="footer" class="px-8 py-12 bg-[var(--ui-bg-elevated)] mt-16">
     <DuckBox class="grid md:grid-cols-5 gap-8">
       <DuckBox class="col-span-2 space-y-4">
         <DuckBox class="flex items-center space-x-2">
-          <DuckBox class="bg-blue-600 text-white p-2 rounded-full">⚡️</DuckBox>
-          <DuckText class="text-xl font-bold">
-            {{ t("appLanding.page.index.footer.about.title") }}
-          </DuckText>
+          <DuckLogo />
         </DuckBox>
         <DuckText class="text-[var(--ui-text-muted)]">
           {{ t("appLanding.page.index.footer.about.desc") }}

@@ -2,6 +2,18 @@
   "appLanding": {
     "page": {
       "index": {
+        "header": {
+          "cta": {
+            "manicure": "Manicure"
+          },
+          "nav": {
+            "home": "Home",
+            "services": "Services",
+            "pricing": "Pricing",
+            "about": "About",
+            "contact": "Contact"
+          }
+        },
         "hero": {
           "title": "Coffee for the soul, beautiful nails for the spirit!",
           "subtitle": "Elevate your style and confidence with DuckBeauty’s professional beauty services.",

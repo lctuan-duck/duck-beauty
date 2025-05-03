@@ -8,9 +8,9 @@
         "subtitle": "Discover your beauty starting from your fingers.",
         "social": "Sign in with your social account",
         "divider": "Or",
-        "email": {
-          "label": "Email",
-          "placeholder": "Enter your email"
+        "identifier": {
+          "label": "Username or Email",
+          "placeholder": "Enter your username or email"
         },
         "password": {
           "label": "Password",
@@ -27,8 +27,15 @@
           "description": "The form has been submitted."
         },
         "validation": {
-          "email": "Invalid email address",
+          "identifier": "Please enter username or email",
           "password": "Password must be at least 8 characters"
+        },
+        "error": {
+          "title": "An error occurred",
+          "badRequest": "Bad request.",
+          "unauthorized": "Invalid username or password.",
+          "notFound": "Account not found.",
+          "default": "An unknown error occurred."
         }
       },
       "signUp": {
@@ -65,6 +72,13 @@
           "minLength": "Minimum length must be {length} characters",
           "maxLength": "Maximum length must be {length} characters",
           "passwordMatch": "Passwords do not match"
+        },
+        "error": {
+          "title": "An error occurred",
+          "badRequest": "Bad request.",
+          "conflict": "Username or email already exists.",
+          "notFound": "Resource not found.",
+          "default": "An unknown error occurred."
         }
       }
     },

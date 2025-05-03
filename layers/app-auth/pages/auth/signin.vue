@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from "@nuxt/ui";
+import { REQUEST_STATUS } from "#app-auth/types";
 import * as v from "valibot";
 
 const { t } = useI18n();
@@ -9,7 +10,7 @@ useHead({
 });
 
 const schema = v.object({
-  email: v.pipe(v.string(), v.email(t("appAuth.page.signin.validation.email"))),
+  identifier: v.pipe(v.string(t("appAuth.page.signin.validation.identifier"))),
   password: v.pipe(
     v.string(),
     v.minLength(8, t("appAuth.page.signin.validation.password"))
@@ -20,26 +21,45 @@ type Schema = v.InferOutput<typeof schema>;
 
 const toast = useToast();
 const form = reactive({
-  email: "",
+  identifier: "",
   password: "",
   showPassword: false,
+  response: {
+    status: REQUEST_STATUS.IDLE,
+    code: 0,
+  },
 });
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   const { login } = useAuth();
   const data = await login({
-    username: event.data.email,
+    identifier: event.data.identifier,
     password: event.data.password,
   });
 
-  if (data) {
+  form.response = data;
+
+  if (data.status === REQUEST_STATUS.SUCCESS) {
     toast.add({
       title: t("appAuth.page.signin.toastSuccess.title"),
       description: t("appAuth.page.signin.toastSuccess.description"),
       color: "success",
     });
+    navigateTo("/");
   }
-  console.log(event.data);
+}
+
+function getErrorMessage() {
+  switch (form.response.code) {
+    case 400:
+      return t("appAuth.page.signin.error.badRequest");
+    case 401:
+      return t("appAuth.page.signin.error.unauthorized");
+    case 404:
+      return t("appAuth.page.signin.error.notFound");
+    default:
+      return t("appAuth.page.signin.error.default");
+  }
 }
 </script>
 
@@ -86,10 +106,13 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         class="space-y-4"
         @submit="onSubmit"
       >
-        <UFormField :label="t('appAuth.page.signin.email.label')" name="email">
+        <UFormField
+          :label="t('appAuth.page.signin.identifier.label')"
+          name="identifier"
+        >
           <UInput
-            v-model="form.email"
-            :placeholder="t('appAuth.page.signin.email.placeholder')"
+            v-model="form.identifier"
+            :placeholder="t('appAuth.page.signin.identifier.placeholder')"
             size="lg"
             auto-capitalize="on"
             auto-complete="email"
@@ -149,6 +172,15 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           type="submit"
         />
       </UForm>
+
+      <UAlert
+        v-if="form.response.status === REQUEST_STATUS.ERROR"
+        color="error"
+        variant="soft"
+        :title="t('appAuth.page.signin.error.title')"
+        :description="getErrorMessage()"
+        icon="i-lucide-x-circle"
+      />
 
       <!-- Footer -->
       <DuckBox class="flex items-center gap-1 justify-center">

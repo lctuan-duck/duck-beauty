@@ -11,11 +11,11 @@ export default defineNuxtConfig({
           href: "/images/logo.png",
           sizes: "96x96",
         },
-        {
-          rel: "icon",
-          type: "image/svg+xml",
-          href: "/svg/logo.svg",
-        },
+        // {
+        //   rel: "icon",
+        //   type: "image/svg+xml",
+        //   href: "/svg/logo.svg",
+        // },
         {
           rel: "shortcut icon",
           href: "/logo.ico",
@@ -45,6 +45,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxt/eslint",
     "@nuxt/scripts",
+    "nuxt-auth-utils",
   ],
   components: [
     {

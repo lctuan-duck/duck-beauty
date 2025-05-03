@@ -2,6 +2,18 @@
   "appLanding": {
     "page": {
       "index": {
+        "header": {
+          "cta": {
+            "manicure": "Làm móng"
+          },
+          "nav": {
+            "home": "Trang chủ",
+            "services": "Dịch vụ",
+            "pricing": "Bảng giá",
+            "about": "Giới thiệu",
+            "contact": "Liên hệ"
+          }
+        },
         "hero": {
           "title": "Cà phê cho tâm hồn, nail đẹp cho tinh thần!",
           "subtitle": "Nâng tầm phong cách và sự tự tin với dịch vụ làm đẹp chuyên nghiệp của DuckBeauty.",

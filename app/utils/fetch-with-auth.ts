@@ -1,12 +1,13 @@
-import { useCookie } from "nuxt/app";
 import type { NitroFetchOptions } from "nitropack";
 import { FetchError } from "ofetch";
 
 function generateAuthHeaders(headers: HeadersInit = {}) {
-  const token = useCookie("accessToken").value;
+  const { user } = useUserSession();
   return {
     ...headers,
-    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(user.value?.accessToken
+      ? { Authorization: `Bearer ${user.value.accessToken}` }
+      : {}),
   };
 }
 

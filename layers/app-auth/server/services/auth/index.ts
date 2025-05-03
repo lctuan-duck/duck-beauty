@@ -1,16 +1,17 @@
 import prisma from "#app-auth/server/prisma";
-import type {
-  LoginAccountDTO,
-  RegisterAccountDTO,
-} from "#app-auth/server/dtos/auth.dto";
+import type { LoginDTO, RegisterDTO } from "#app-auth/server/dtos/auth.dto";
 
-export async function registerAccount(dto: RegisterAccountDTO) {
+export async function register(dto: RegisterDTO) {
   return prisma.$transaction(async (db) => {
     const existingUser = await db.user.findFirst({
       where: { OR: [{ email: dto.email }, { username: dto.username }] },
     });
     if (existingUser) {
-      throw new Error("User already exists with this email or username.");
+      throw createError({
+        statusCode: 409, // 409 Conflict
+        statusMessage: "User already exists with this email or username.",
+        message: "User already exists with this email or username.",
+      });
     }
 
     const hashedPassword = await hashPassword(dto.password);
@@ -31,12 +32,18 @@ export async function registerAccount(dto: RegisterAccountDTO) {
       signJwt({ userId: user.id }, { expiresIn: "7d" }),
     ]);
 
+    // Verify JWT tokens to get expiration times
+    const [expiresAtAccess, expiresAtRefresh] = await Promise.all([
+      verifyJwt(accessToken),
+      verifyJwt(refreshToken),
+    ]);
+
     // save session token to db
     await db.session.create({
       data: {
         userId: user.id,
-        expiresAtAccess: new Date(Date.now() + 1000 * 60 * 60), // 60 minutes
-        expiresAtRefresh: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // 7 days
+        expiresAtAccess: (expiresAtAccess.payload.exp || 0) * 1000,
+        expiresAtRefresh: (expiresAtRefresh.payload.exp || 0) * 1000,
         accessToken,
         refreshToken,
       },
@@ -48,13 +55,17 @@ export async function registerAccount(dto: RegisterAccountDTO) {
       ...rest,
       accessToken,
       refreshToken,
+      expiresAtAccess: (expiresAtAccess.payload.exp || 0) * 1000,
+      expiresAtRefresh: (expiresAtRefresh.payload.exp || 0) * 1000,
     };
   });
 }
-export async function loginAccount(dto: LoginAccountDTO) {
+export async function login(dto: LoginDTO) {
   return prisma.$transaction(async (db) => {
     const existingUser = await db.user.findFirst({
-      where: { OR: [{ email: dto.username }, { username: dto.username }] },
+      where: {
+        OR: [{ email: dto.identifier }, { username: dto.identifier }],
+      },
     });
 
     if (!existingUser) {
@@ -89,12 +100,17 @@ export async function loginAccount(dto: LoginAccountDTO) {
       signJwt({ userId: existingUser.id }, { expiresIn: "7d" }),
     ]);
 
+    // Verify JWT tokens to get expiration times
+    const [expiresAtAccess, expiresAtRefresh] = await Promise.all([
+      verifyJwt(accessToken),
+      verifyJwt(refreshToken),
+    ]);
     // save session token to db
     await db.session.create({
       data: {
         userId: existingUser.id,
-        expiresAtAccess: new Date(Date.now() + 1000 * 60 * 60), // 60 minutes
-        expiresAtRefresh: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // 7 days
+        expiresAtAccess: (expiresAtAccess.payload.exp || 0) * 1000,
+        expiresAtRefresh: (expiresAtRefresh.payload.exp || 0) * 1000,
         accessToken,
         refreshToken,
       },
@@ -106,6 +122,8 @@ export async function loginAccount(dto: LoginAccountDTO) {
       ...rest,
       accessToken,
       refreshToken,
+      expiresAtAccess: (expiresAtAccess.payload.exp || 0) * 1000,
+      expiresAtRefresh: (expiresAtRefresh.payload.exp || 0) * 1000,
     };
   });
 }

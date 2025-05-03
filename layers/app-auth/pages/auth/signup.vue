@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as v from "valibot";
 import type { FormSubmitEvent } from "@nuxt/ui";
+import { REQUEST_STATUS } from "#app-auth/types";
 
 const { t } = useI18n();
 
@@ -61,6 +62,10 @@ const form = reactive({
   confirmPassword: "",
   showPassword: false,
   showConfirmPassword: false,
+  response: {
+    status: REQUEST_STATUS.IDLE,
+    code: 0,
+  },
 });
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
@@ -70,14 +75,28 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     password: event.data.password,
     email: event.data.email,
   });
-  if (data) {
+  form.response = data;
+  if (data.status === REQUEST_STATUS.SUCCESS) {
     toast.add({
       title: t("appAuth.page.signUp.toastSuccess.title"),
       description: t("appAuth.page.signUp.toastSuccess.description"),
       color: "success",
     });
+    navigateTo("/");
   }
-  console.log(event.data);
+}
+
+function getErrorMessage() {
+  switch (form.response.code) {
+    case 400:
+      return t("appAuth.page.signin.error.badRequest");
+    case 404:
+      return t("appAuth.page.signin.error.notFound");
+    case 409:
+      return t("appAuth.page.signin.error.conflict");
+    default:
+      return t("appAuth.page.signin.error.default");
+  }
 }
 </script>
 
@@ -209,7 +228,14 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           type="submit"
         />
       </UForm>
-
+      <UAlert
+        v-if="form.response.status === REQUEST_STATUS.ERROR"
+        color="error"
+        variant="soft"
+        :title="t('appAuth.page.signin.error.title')"
+        :description="getErrorMessage()"
+        icon="i-lucide-x-circle"
+      />
       <!-- Footer -->
       <DuckBox class="flex items-center gap-1 justify-center">
         <DuckText class="text-sm text-[var(--ui-text-muted)]">

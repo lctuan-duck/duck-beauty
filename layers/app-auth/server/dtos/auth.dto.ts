@@ -3,7 +3,7 @@ export enum USER_ROLE {
   ADMIN = 0,
 }
 
-export interface RegisterAccountDTO {
+export interface RegisterDTO {
   email: string;
   username: string;
   phone?: string;
@@ -12,7 +12,7 @@ export interface RegisterAccountDTO {
   role: USER_ROLE;
 }
 
-export interface LoginAccountDTO {
-  username: string; // username or email
+export interface LoginDTO {
+  identifier: string; // username or email
   password: string;
 }

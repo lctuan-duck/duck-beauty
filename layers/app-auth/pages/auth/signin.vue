@@ -26,11 +26,19 @@ const form = reactive({
 });
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  toast.add({
-    title: t("appAuth.page.signin.toastSuccess.title"),
-    description: t("appAuth.page.signin.toastSuccess.description"),
-    color: "success",
+  const { login } = useAuth();
+  const data = await login({
+    username: event.data.email,
+    password: event.data.password,
   });
+
+  if (data) {
+    toast.add({
+      title: t("appAuth.page.signin.toastSuccess.title"),
+      description: t("appAuth.page.signin.toastSuccess.description"),
+      color: "success",
+    });
+  }
   console.log(event.data);
 }
 </script>

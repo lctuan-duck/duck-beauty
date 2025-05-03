@@ -14,9 +14,9 @@ export default defineNuxtConfig({
     },
   ],
   imports: {
-    dirs: ["./stores/**"],
+    dirs: ["./stores/**", "./utils/**", "./composables/**"],
   },
-  modules: ["@pinia/nuxt", "@nuxtjs/i18n"],
+  modules: ["@pinia/nuxt", "@nuxtjs/i18n", "@nuxt/eslint"],
   css: ["~/assets/css/main.css"],
   /**
    * Modules configuration

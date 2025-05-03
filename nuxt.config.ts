@@ -34,6 +34,9 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  imports: {
+    dirs: ["./server/utils/**"],
+  },
   modules: [
     "@nuxt/ui",
     "@nuxtjs/i18n",

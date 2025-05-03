@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../../node_modules/@prisma/auth" 
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL_DUCK_BEAUTY_SERVICE")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique // @unique ensures uniqueness and creates automatic indexes
+  username  String   @unique
+  phone     String?  
+  password  String
+  fullName      String?
+  role      Int     @default(1) // 1: user, 0: admin,
+  avatar    Json? // JSON field to store avatar data
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relationships
+}
+
+model Session {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  accessToken String @unique
+  expiresAtAccess DateTime
+  refreshToken String @unique
+  expiresAtRefresh DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+

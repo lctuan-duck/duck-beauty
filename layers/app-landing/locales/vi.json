@@ -61,6 +61,36 @@
           },
           "copyright": "© 2025 DuckBeauty. Đã đăng ký bản quyền."
         }
+      },
+      "contact": {
+        "location": {
+          "title": "Vị trí của chúng tôi",
+          "branch": "Bà Rịa - Vũng Tàu",
+          "description": "Nằm tại khu vực yên tĩnh và dễ tìm, cơ sở của chúng tôi tại Bà Rịa - Vũng Tàu mang đến không gian thư giãn lý tưởng cùng các dịch vụ làm đẹp chuyên nghiệp, đáp ứng mọi nhu cầu chăm sóc sắc đẹp của bạn.",
+          "addressLabel": "Địa chỉ",
+          "address": "Ngãi Giao Châu Đức, Bà Rịa - Vũng Tàu",
+          "phoneLabel": "Đặt qua điện thoại",
+          "phone": "0377969735",
+          "emailLabel": "Đặt qua email"
+        },
+        "form": {
+          "title": "Hãy liên hệ với chúng tôi",
+          "subtitle": "Liên hệ với chúng tôi để được báo giá, trợ giúp hoặc tham gia nhóm.",
+          "name": "Tên của bạn",
+          "email": "Email",
+          "phone": "Số điện thoại",
+          "message": "Lời nhắn",
+          "placeholder": {
+            "name": "Nhập tên của bạn",
+            "phone": "Nhập số điện thoại của bạn",
+            "message": "Viết lời nhắn của bạn..."
+          },
+          "button": "Gửi lời nhắn"
+        },
+        "toast": {
+          "successTitle": "Thành công",
+          "successMessage": "Biểu mẫu đã được gửi thành công."
+        }
       }
     }
   }

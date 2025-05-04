@@ -27,7 +27,6 @@ export async function register(dto: RegisterDTO) {
         id: user.id,
         email: user.email,
         username: user.username,
-        role: user.role,
       }),
       signJwt({ userId: user.id }, { expiresIn: "7d" }),
     ]);
@@ -95,7 +94,6 @@ export async function login(dto: LoginDTO) {
         id: existingUser.id,
         email: existingUser.email,
         username: existingUser.username,
-        role: existingUser.role,
       }),
       signJwt({ userId: existingUser.id }, { expiresIn: "7d" }),
     ]);
@@ -125,5 +123,25 @@ export async function login(dto: LoginDTO) {
       expiresAtAccess: (expiresAtAccess.payload.exp || 0) * 1000,
       expiresAtRefresh: (expiresAtRefresh.payload.exp || 0) * 1000,
     };
+  });
+}
+
+export async function logout(userId: string) {
+  return prisma.$transaction(async (db) => {
+    const session = await db.session.findFirst({
+      where: { userId },
+    });
+
+    if (!session) {
+      throw createError({
+        statusCode: 404, // 404 Not Found
+        statusMessage: "Session not found",
+        message: "Session not found",
+      });
+    }
+
+    await db.session.delete({
+      where: { id: session.id },
+    });
   });
 }

@@ -28,9 +28,13 @@ const form = reactive({
     status: REQUEST_STATUS.IDLE,
     code: 0,
   },
+  isFetching: false,
 });
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
+  if (form.isFetching) return;
+  form.isFetching = true;
+
   const { login } = useAuth();
   const data = await login({
     identifier: event.data.identifier,
@@ -47,6 +51,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     });
     navigateTo("/");
   }
+  form.isFetching = false;
 }
 
 function getErrorMessage() {
@@ -169,6 +174,8 @@ function getErrorMessage() {
           block
           size="lg"
           :label="t('appAuth.page.signin.submit')"
+          :loading="form.isFetching"
+          :disabled="form.isFetching"
           type="submit"
         />
       </UForm>

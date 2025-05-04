@@ -132,5 +132,5 @@ const itemsDropdown = computed<DropdownMenuItem[]>(() => [
     </DuckBox>
   </DuckBox>
   <!-- main -->
-  <NuxtPage />
+  <slot />
 </template>

@@ -13,27 +13,33 @@ const props = withDefaults(
   }
 );
 
-const imageOptions = reactive({ src: props.src });
-const { isLoading, error } = useImage(imageOptions, { delay: 0 });
+const { isLoading, error } = useImage({ src: props.src }, { delay: 0 });
 </script>
 <template>
   <USkeleton v-if="isLoading" class="size-full" v-bind="$attrs" />
   <NuxtImg
     v-else-if="!isLoading && props.element === 'nuxt-img'"
-    :src="error ? IMAGE_DEFAULT.PLACEHOLDER : imageOptions.src"
+    :src="error ? IMAGE_DEFAULT.PLACEHOLDER : props.src"
     alt="image"
     width="100%"
     height="100%"
     loading="lazy"
+    placeholder="blur"
+    decoding="async"
     v-bind="$attrs"
   />
   <img
     v-else
-    :src="error ? IMAGE_DEFAULT.PLACEHOLDER : imageOptions.src"
+    :src="error ? IMAGE_DEFAULT.PLACEHOLDER : props.src"
     alt="image"
     width="100%"
     height="100%"
     loading="lazy"
+    decoding="async"
+    :class="[
+      'transition-all duration-700 ease-in-out',
+      isLoading ? 'blur-sm grayscale-0' : 'grayscale',
+    ]"
     v-bind="$attrs"
   />
 </template>

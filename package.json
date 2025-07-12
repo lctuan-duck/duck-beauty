@@ -11,9 +11,11 @@
     "postinstall": "nuxt prepare",
     "prisma:generate:auth": "prisma generate --schema=./layers/app-auth/server/prisma/schema.prisma",
     "prisma:generate:nail": "prisma generate --schema=./layers/app-nail/server/prisma/schema.prisma",
-    "prisma:generate": "pnpm run prisma:generate:auth && pnpm run prisma:generate:nail",
+    "prisma:generate:dark-room": "prisma generate --schema=./layers/app-dark-room/server/prisma/schema.prisma",
+    "prisma:generate": "pnpm run prisma:generate:auth && pnpm run prisma:generate:dark-room",
     "prisma:db:push:auth": "prisma db push --schema=./layers/app-auth/server/prisma/schema.prisma",
-    "prisma:db:push": "pnpm run prisma:db:push:auth"
+    "prisma:db:push:dark-room": "prisma db push --schema=./layers/app-dark-room/server/prisma/schema.prisma",
+    "prisma:db:push": "pnpm run prisma:db:push:auth && pnpm run prisma:db:push:dark-room"
   },
   "dependencies": {
     "@nuxt/eslint": "^1.1.0",

@@ -1,0 +1,12 @@
+{
+  "appDarkRoom": {
+    "title": "Ứng dụng Dark Room",
+    "description": "Một ứng dụng đơn giản để minh họa việc sử dụng lớp Ứng dụng Dark Room.",
+    "page": {},
+    "components": {
+      "mobile": {},
+      "desktop": {},
+      "platform": {}
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "appDarkRoom": {
+    "title": "App Dark Room",
+    "description": "A simple app to demonstrate the use of the App Dark Room layer.",
+    "page": {},
+    "components": {
+      "mobile": {},
+      "desktop": {},
+      "platform": {}
+    }
+  }
+}

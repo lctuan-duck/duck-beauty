@@ -30,4 +30,5 @@ export default defineNuxtConfig({
       { code: "vi", file: "vi.json" },
     ],
   },
+  ssr: false,
 });

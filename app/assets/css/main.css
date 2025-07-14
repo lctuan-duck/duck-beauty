@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 @import "./scroll.css";
+@import "./tiptap.css";
 
 @theme {
   --color-pink-500: oklch(0.718 0.202 349.761);

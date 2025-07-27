@@ -5,6 +5,9 @@ import { REQUEST_STATUS } from "#app-auth/types";
 
 const { t } = useI18n();
 
+definePageMeta({
+  layout: "default-auth-layout",
+});
 useHead({
   title: t("appAuth.page.signUp.title"),
 });
@@ -22,8 +25,8 @@ const schema = v.pipe(
     password: v.pipe(
       v.string(),
       v.minLength(
-        8,
-        t("appAuth.page.signUp.validation.minLength", { length: 8 })
+        6,
+        t("appAuth.page.signUp.validation.minLength", { length: 6 })
       ),
       v.maxLength(
         30,
@@ -33,8 +36,8 @@ const schema = v.pipe(
     confirmPassword: v.pipe(
       v.string(),
       v.minLength(
-        8,
-        t("appAuth.page.signUp.validation.minLength", { length: 8 })
+        6,
+        t("appAuth.page.signUp.validation.minLength", { length: 6 })
       ),
       v.maxLength(
         30,
@@ -54,7 +57,6 @@ const schema = v.pipe(
 
 type Schema = v.InferOutput<typeof schema>;
 
-const toast = useToast();
 const form = reactive({
   username: "",
   email: "",
@@ -66,46 +68,50 @@ const form = reactive({
     status: REQUEST_STATUS.IDLE,
     code: 0,
   },
+  isPending: false,
 });
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
+  if (form.isPending) return;
+  form.isPending = true;
+
   const { register } = useAuth();
+
   const data = await register({
     username: event.data.username,
     password: event.data.password,
     email: event.data.email,
   });
+
   form.response = data;
+
   if (data.status === REQUEST_STATUS.SUCCESS) {
-    toast.add({
-      title: t("appAuth.page.signUp.toastSuccess.title"),
-      description: t("appAuth.page.signUp.toastSuccess.description"),
-      color: "success",
-    });
     navigateTo("/");
   }
+
+  form.isPending = false;
 }
 
 function getErrorMessage() {
   switch (form.response.code) {
     case 400:
-      return t("appAuth.page.signin.error.badRequest");
+      return t("appAuth.page.signUp.error.badRequest");
     case 404:
-      return t("appAuth.page.signin.error.notFound");
+      return t("appAuth.page.signUp.error.notFound");
     case 409:
-      return t("appAuth.page.signin.error.conflict");
+      return t("appAuth.page.signUp.error.conflict");
     default:
-      return t("appAuth.page.signin.error.default");
+      return t("appAuth.page.signUp.error.default");
   }
 }
 </script>
 
 <template>
-  <DuckBox
-    class="min-h-screen flex items-center justify-center relative overflow-hidden"
-  >
+  <DuckBox class="h-full max-sm:mx-4 sm:w-[400px]">
     <!-- Form Card -->
-    <DuckBox class="p-8 rounded-xl w-full max-w-md shadow-lg space-y-6">
+    <DuckBox
+      class="p-8 w-full max-w-md space-y-4 relative overflow-hidden bg-[var(--ui-bg)] shadow-xl rounded-xl ring ring-[var(--ui-border)]"
+    >
       <!-- Header -->
       <DuckBox class="text-center space-y-1">
         <DuckText class="text-2xl font-semibold">
@@ -117,21 +123,7 @@ function getErrorMessage() {
       </DuckBox>
 
       <!-- Social Auth -->
-      <DuckBox class="text-center space-y-4">
-        <DuckText class="text-sm font-medium">
-          {{ t("appAuth.page.signUp.social") }}
-        </DuckText>
-        <DuckBox class="flex justify-center space-x-4">
-          <UButton
-            icon="flat-color-icons:google"
-            variant="soft"
-            color="neutral"
-          />
-          <UButton icon="logos:twitter" variant="soft" color="neutral" />
-          <UButton icon="logos:facebook" variant="soft" color="neutral" />
-          <UButton icon="bi:github" variant="soft" color="neutral" />
-        </DuckBox>
-      </DuckBox>
+      <AppAuthMoleculesAuthSocialCard />
 
       <!-- Divider -->
       <USeparator :label="t('appAuth.page.signUp.divider')" />
@@ -217,8 +209,9 @@ function getErrorMessage() {
                 :aria-pressed="form.showConfirmPassword"
                 aria-controls="password"
                 @click="form.showConfirmPassword = !form.showConfirmPassword"
-              /> </template
-          ></UInput>
+              />
+            </template>
+          </UInput>
         </UFormField>
         <!-- Submit Button -->
         <UButton
@@ -226,13 +219,15 @@ function getErrorMessage() {
           size="lg"
           :label="t('appAuth.page.signUp.submit')"
           type="submit"
+          :loading="form.isPending"
+          :disabled="form.isPending"
         />
       </UForm>
       <UAlert
         v-if="form.response.status === REQUEST_STATUS.ERROR"
         color="error"
         variant="soft"
-        :title="t('appAuth.page.signin.error.title')"
+        :title="t('appAuth.page.signUp.error.title')"
         :description="getErrorMessage()"
         icon="i-lucide-x-circle"
       />

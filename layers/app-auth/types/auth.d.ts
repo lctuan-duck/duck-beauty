@@ -1,18 +1,14 @@
+import type { UserRes } from "./auth.res";
+
 declare module "#auth-utils" {
-  interface User {
-    id: string;
-    fullName: string;
-    username: string;
-    phone?: string;
-    email: string;
-    avatar?: string;
+  interface User extends UserRes {
     accessToken?: string;
-    expiresAt?: number;
+    expiresAtAccess?: number;
   }
 
   interface SecureSessionData {
     refreshToken?: string;
-    expiresAt?: number;
+    expiresAtRefresh?: number;
   }
 }
 

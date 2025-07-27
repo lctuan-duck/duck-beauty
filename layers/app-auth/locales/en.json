@@ -5,10 +5,10 @@
     "page": {
       "signin": {
         "title": "Sign In",
-        "subtitle": "Discover your beauty starting from your fingers.",
+        "subtitle": "Welcome back, please sign in to continue",
         "social": "Sign in with your social account",
         "divider": "Or",
-        "identifier": {
+        "credential": {
           "label": "Username or Email",
           "placeholder": "Enter your username or email"
         },
@@ -27,7 +27,7 @@
           "description": "The form has been submitted."
         },
         "validation": {
-          "identifier": "Please enter username or email",
+          "credential": "Please enter username or email",
           "password": "Password must be at least 8 characters"
         },
         "error": {
@@ -40,7 +40,7 @@
       },
       "signUp": {
         "title": "Sign Up",
-        "subtitle": "Join us to experience professional nail care services",
+        "subtitle": "Join us to experience our services",
         "social": "Sign up with a social media account",
         "divider": "Or",
         "username": {

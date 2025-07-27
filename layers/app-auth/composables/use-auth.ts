@@ -1,9 +1,10 @@
-import { REQUEST_STATUS, type RegisterAccountBody } from "#app-auth/types";
+import { REQUEST_STATUS } from "#app-auth/types";
+import type { RegisterReq } from "../types/auth.req";
 
 export function useAuth() {
   const { user, fetch: refreshSession, clear: clearSession } = useUserSession();
 
-  async function login(body: { identifier: string; password: string }) {
+  async function login(body: { credential: string; password: string }) {
     try {
       await $fetch("/api/v1/auth/login", {
         method: "POST",
@@ -22,7 +23,7 @@ export function useAuth() {
       };
     }
   }
-  async function register(body: RegisterAccountBody) {
+  async function register(body: RegisterReq) {
     try {
       await $fetch("/api/v1/auth/register", {
         method: "POST",
@@ -41,17 +42,25 @@ export function useAuth() {
       };
     }
   }
+
   async function refreshToken() {}
-  async function logout() {
+
+  async function logout(redirect: boolean = true) {
     try {
       await $fetch("/api/v1/auth/logout");
-      await clearSession();
+
+      clearSession();
+
+      if (redirect) navigateTo("/auth/signin", { external: true });
       return {
         status: REQUEST_STATUS.SUCCESS,
         code: 200,
       };
     } catch (error) {
       console.error("Logout error:", error);
+
+      clearSession();
+
       return {
         status: REQUEST_STATUS.ERROR,
         code: (error as { statusCode: number }).statusCode || 0,

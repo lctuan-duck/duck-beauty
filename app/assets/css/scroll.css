@@ -6,3 +6,29 @@
 .scroll-hidden::-webkit-scrollbar {
   display: none;
 }
+
+/* Áp dụng cho phần tử cần scroll */
+.scroll-smaller {
+  overflow: auto;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #999 transparent;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+.scroll-smaller::-webkit-scrollbar {
+  width: 4px; /* Chiều rộng thanh cuộn */
+}
+
+.scroll-smaller::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-smaller::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 3px;
+}
+
+.scroll-smaller::-webkit-scrollbar-button {
+  display: none; /* Ẩn nút mũi tên trên/dưới */
+  height: 0;
+}

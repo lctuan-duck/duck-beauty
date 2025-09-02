@@ -1,5 +1,6 @@
 import { REQUEST_STATUS } from "#app-auth/types";
 import type { RegisterReq } from "../types/auth.req";
+import { FetchError } from "ofetch";
 
 export function useAuth() {
   const { user, fetch: refreshSession, clear: clearSession } = useUserSession();
@@ -36,6 +37,22 @@ export function useAuth() {
       };
     } catch (error) {
       console.error("Register error:", error);
+
+      if (error instanceof FetchError) {
+        const payload = error.data as {
+          statusCode: number;
+          data?: { type: string; message: string };
+        };
+
+        return {
+          status: REQUEST_STATUS.ERROR,
+          code: payload.statusCode || 0,
+          type: payload?.data?.type as
+            | "USERNAME_EXISTS"
+            | "EMAIL_EXISTS"
+            | undefined,
+        };
+      }
       return {
         status: REQUEST_STATUS.ERROR,
         code: (error as { statusCode: number }).statusCode || 0,
@@ -67,6 +84,7 @@ export function useAuth() {
       };
     }
   }
+
   async function forgotPassword(email: string) {
     try {
       await $fetch("/api/proxy/v1/auth/forgot-password", {
@@ -87,6 +105,26 @@ export function useAuth() {
     }
   }
 
+  async function resetPassword(body: { session: string; password: string }) {
+    try {
+      await $fetch("/api/proxy/v1/auth/reset-password", {
+        method: "PATCH",
+        body,
+      });
+
+      return {
+        status: REQUEST_STATUS.SUCCESS,
+        code: 200,
+      };
+    } catch (error) {
+      console.error("Reset password error:", error);
+      return {
+        status: REQUEST_STATUS.ERROR,
+        code: (error as { statusCode: number }).statusCode || 0,
+      };
+    }
+  }
+
   return {
     user,
     login,
@@ -94,5 +132,6 @@ export function useAuth() {
     register,
     refreshToken,
     forgotPassword,
+    resetPassword,
   };
 }

@@ -13,7 +13,10 @@ useHead({
 });
 
 const schema = v.object({
-  credential: v.pipe(v.string(t("appAuth.page.signin.validation.credential"))),
+  credential: v.pipe(
+    v.string(),
+    v.minLength(3, t("appAuth.page.signin.validation.credential"))
+  ),
   password: v.pipe(
     v.string(),
     v.minLength(6, t("appAuth.page.signin.validation.password"))
@@ -166,7 +169,7 @@ function getErrorMessage() {
       </UForm>
 
       <UAlert
-        v-if="form.response.status === REQUEST_STATUS.ERROR"
+        v-if="!form.isPending && form.response.status === REQUEST_STATUS.ERROR"
         color="error"
         variant="soft"
         :title="t('appAuth.page.signin.error.title')"
@@ -181,7 +184,7 @@ function getErrorMessage() {
         </DuckText>
         <UButton
           variant="link"
-          :label="t('appAuth.page.signin.footerAction')"
+          :label="t('appAuth.page.signUp.title')"
           class="p-0"
           to="/auth/signup"
         />

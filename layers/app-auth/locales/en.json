@@ -2,6 +2,7 @@
   "appAuth": {
     "title": "Application Authentication Layer",
     "description": "This is a layer for application authentication.",
+    "backToPage": "Back to page",
     "page": {
       "signin": {
         "title": "Sign In",
@@ -21,7 +22,6 @@
         },
         "submit": "Sign In",
         "footerText": "Don't have an account?",
-        "footerAction": "Sign up",
         "toastSuccess": {
           "title": "Success",
           "description": "The form has been submitted."
@@ -61,7 +61,6 @@
         },
         "submit": "Sign Up",
         "footerText": "Already have an account?",
-        "footerAction": "Sign In",
         "toastSuccess": {
           "title": "Success",
           "description": "The form has been submitted."
@@ -78,6 +77,8 @@
           "badRequest": "Bad request.",
           "conflict": "Username or email already exists.",
           "notFound": "Resource not found.",
+          "emailExists": "Email already exists.",
+          "usernameExists": "Username already exists.",
           "default": "An unknown error occurred. Please try again later!"
         }
       },
@@ -88,7 +89,7 @@
           "label": "Email",
           "placeholder": "Enter your email"
         },
-        "submit": "Send Password Reset Link",
+        "submit": "Send Link",
         "reSendAfter": "Resend after {seconds} seconds",
         "toastSuccess": {
           "title": "Success",
@@ -96,6 +97,32 @@
         },
         "validation": {
           "email": "Invalid email"
+        },
+        "error": {
+          "title": "An error occurred",
+          "badRequest": "Bad request.",
+          "notFound": "Account not found.",
+          "default": "An unknown error occurred. Please try again later!"
+        }
+      },
+      "resetPassword": {
+        "title": "Reset Password",
+        "subtitle": "Enter your new password",
+        "password": {
+          "label": "New Password",
+          "placeholder": "Enter your new password"
+        },
+        "confirmPassword": {
+          "label": "Confirm New Password",
+          "placeholder": "Re-enter your new password"
+        },
+        "submit": "Reset Password",
+        "toastSuccess": {
+          "title": "Success",
+          "description": "Your password has been reset successfully."
+        },
+        "validation": {
+          "password": "Password must be at least 6 characters"
         },
         "error": {
           "title": "An error occurred",

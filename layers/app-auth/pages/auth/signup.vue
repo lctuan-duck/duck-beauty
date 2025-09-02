@@ -67,6 +67,7 @@ const form = reactive({
   response: {
     status: REQUEST_STATUS.IDLE,
     code: 0,
+    type: undefined as "USERNAME_EXISTS" | "EMAIL_EXISTS" | undefined,
   },
   isPending: false,
 });
@@ -83,7 +84,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     email: event.data.email,
   });
 
-  form.response = data;
+  form.response = { ...form.response, ...data };
 
   if (data.status === REQUEST_STATUS.SUCCESS) {
     navigateTo("/");
@@ -99,6 +100,12 @@ function getErrorMessage() {
     case 404:
       return t("appAuth.page.signUp.error.notFound");
     case 409:
+      if (form.response.type === "EMAIL_EXISTS") {
+        return t("appAuth.page.signUp.error.emailExists");
+      }
+      if (form.response.type === "USERNAME_EXISTS") {
+        return t("appAuth.page.signUp.error.usernameExists");
+      }
       return t("appAuth.page.signUp.error.conflict");
     default:
       return t("appAuth.page.signUp.error.default");
@@ -226,7 +233,7 @@ function getErrorMessage() {
         />
       </UForm>
       <UAlert
-        v-if="form.response.status === REQUEST_STATUS.ERROR"
+        v-if="!form.isPending && form.response.status === REQUEST_STATUS.ERROR"
         color="error"
         variant="soft"
         :title="t('appAuth.page.signUp.error.title')"
@@ -240,7 +247,7 @@ function getErrorMessage() {
         </DuckText>
         <UButton
           variant="link"
-          :label="t('appAuth.page.signUp.footerAction')"
+          :label="t('appAuth.page.signin.title')"
           class="p-0"
           to="/auth/signin"
         />

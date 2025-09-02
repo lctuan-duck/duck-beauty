@@ -2,6 +2,7 @@
   "appAuth": {
     "title": "Lớp xác thực ứng dụng",
     "description": "Đây là một lớp cho việc xác thực ứng dụng.",
+    "backToPage": "Quay lại trang",
     "page": {
       "signin": {
         "title": "Đăng nhập",
@@ -21,7 +22,6 @@
         },
         "submit": "Đăng nhập",
         "footerText": "Bạn đã chưa có tài khoản?",
-        "footerAction": "Đăng ký",
         "toastSuccess": {
           "title": "Thành công",
           "description": "Biểu mẫu đã được gửi."
@@ -61,7 +61,6 @@
         },
         "submit": "Đăng ký",
         "footerText": "Bạn đã có tài khoản?",
-        "footerAction": "Đăng nhập",
         "toastSuccess": {
           "title": "Thành công",
           "description": "Biểu mẫu đã được gửi."
@@ -77,6 +76,8 @@
           "title": "Đã xảy ra lỗi",
           "badRequest": "Yêu cầu không hợp lệ.",
           "conflict": "Tên người dùng hoặc email đã tồn tại.",
+          "emailExists": "Email đã tồn tại.",
+          "usernameExists": "Tên người dùng đã tồn tại.",
           "notFound": "Không tìm thấy tài nguyên.",
           "default": "Hệ thống đã xảy ra lỗi, vui lòng thử lại sau!"
         }
@@ -88,7 +89,7 @@
           "label": "Email",
           "placeholder": "Nhập email của bạn"
         },
-        "submit": "Gửi liên kết đặt lại mật khẩu",
+        "submit": "Gửi liên kết",
         "reSendAfter": "Gửi lại sau {seconds} giây",
         "toastSuccess": {
           "title": "Thành công",
@@ -96,6 +97,32 @@
         },
         "validation": {
           "email": "Email không hợp lệ"
+        },
+        "error": {
+          "title": "Đã xảy ra lỗi",
+          "badRequest": "Yêu cầu không hợp lệ.",
+          "notFound": "Không tìm thấy tài khoản.",
+          "default": "Hệ thống đã xảy ra lỗi, vui lòng thử lại sau!"
+        }
+      },
+      "resetPassword": {
+        "title": "Đặt lại mật khẩu",
+        "subtitle": "Nhập mật khẩu mới của bạn",
+        "password": {
+          "label": "Mật khẩu mới",
+          "placeholder": "Nhập mật khẩu mới của bạn"
+        },
+        "confirmPassword": {
+          "label": "Xác nhận mật khẩu mới",
+          "placeholder": "Nhập lại mật khẩu mới của bạn"
+        },
+        "submit": "Đặt lại mật khẩu",
+        "toastSuccess": {
+          "title": "Thành công",
+          "description": "Mật khẩu của bạn đã được đặt lại thành công."
+        },
+        "validation": {
+          "password": "Mật khẩu tối thiểu 6 kí tự"
         },
         "error": {
           "title": "Đã xảy ra lỗi",

@@ -142,33 +142,37 @@ function getErrorMessage() {
       <!-- Footer -->
       <DuckBox class="flex items-center gap-1 justify-center">
         <DuckText class="text-sm text-[var(--ui-text-muted)]">
-          {{ t("appAuth.page.signUp.footerText") }}
+          {{ t("appAuth.backToPage") }}
         </DuckText>
         <UButton
           variant="link"
-          :label="t('appAuth.page.signUp.footerAction')"
+          :label="t('appAuth.page.signin.title')"
           class="p-0"
           to="/auth/signin"
         />
       </DuckBox>
 
-      <UAlert
-        v-if="state.response.status === REQUEST_STATUS.SUCCESS"
-        color="success"
-        variant="soft"
-        :title="t('appAuth.page.forgotPassword.toastSuccess.title')"
-        :description="t('appAuth.page.forgotPassword.toastSuccess.description')"
-        icon="i-lucide-check-circle"
-      />
+      <DuckBox v-if="!state.loading.isPending">
+        <UAlert
+          v-if="state.response.status === REQUEST_STATUS.SUCCESS"
+          color="success"
+          variant="soft"
+          :title="t('appAuth.page.forgotPassword.toastSuccess.title')"
+          :description="
+            t('appAuth.page.forgotPassword.toastSuccess.description')
+          "
+          icon="i-lucide-check-circle"
+        />
 
-      <UAlert
-        v-if="state.response.status === REQUEST_STATUS.ERROR"
-        color="error"
-        variant="soft"
-        :title="t('appAuth.page.forgotPassword.error.title')"
-        :description="getErrorMessage()"
-        icon="i-lucide-x-circle"
-      />
+        <UAlert
+          v-if="state.response.status === REQUEST_STATUS.ERROR"
+          color="error"
+          variant="soft"
+          :title="t('appAuth.page.forgotPassword.error.title')"
+          :description="getErrorMessage()"
+          icon="i-lucide-x-circle"
+        />
+      </DuckBox>
     </DuckBox>
   </DuckBox>
 </template>

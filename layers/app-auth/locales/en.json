@@ -35,7 +35,7 @@
           "badRequest": "Bad request.",
           "unauthorized": "Invalid username or password.",
           "notFound": "Account not found.",
-          "default": "An unknown error occurred."
+          "default": "An unknown error occurred. Please try again later!"
         }
       },
       "signUp": {
@@ -78,7 +78,30 @@
           "badRequest": "Bad request.",
           "conflict": "Username or email already exists.",
           "notFound": "Resource not found.",
-          "default": "An unknown error occurred."
+          "default": "An unknown error occurred. Please try again later!"
+        }
+      },
+      "forgotPassword": {
+        "title": "Forgot Password",
+        "subtitle": "Enter your email to receive a password reset link",
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email"
+        },
+        "submit": "Send Password Reset Link",
+        "reSendAfter": "Resend after {seconds} seconds",
+        "toastSuccess": {
+          "title": "Success",
+          "description": "Password reset link has been sent. Please check your email!"
+        },
+        "validation": {
+          "email": "Invalid email"
+        },
+        "error": {
+          "title": "An error occurred",
+          "badRequest": "Bad request.",
+          "notFound": "Account not found.",
+          "default": "An unknown error occurred. Please try again later!"
         }
       }
     },

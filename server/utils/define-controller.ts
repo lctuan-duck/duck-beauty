@@ -23,7 +23,7 @@ export function defineController<
   return defineEventHandler(async (event: H3Event) => {
     const requestId = uuid();
     try {
-      console.log(`[Controller][${requestId}][${event.path}] \nStarted`);
+      console.log(`\n[Controller][${requestId}][${event.path}] \nStarted`);
 
       // ✨ Run all middlewares in order
       if (config?.middlewares?.length) {
@@ -34,10 +34,10 @@ export function defineController<
 
       const response = await handler(event);
 
-      console.log(`[Controller][${requestId}][${event.path}] \nFinished`);
+      console.log(`\n[Controller][${requestId}][${event.path}] \nFinished`);
       return response;
     } catch (error) {
-      console.log(`[Controller][${requestId}][${event.path}] \nError:`);
+      console.log(`\n[Controller][${requestId}][${event.path}] \nError:`);
 
       if (error instanceof Error) {
         throw createError({

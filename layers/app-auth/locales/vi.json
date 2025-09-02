@@ -35,7 +35,7 @@
           "badRequest": "Yêu cầu không hợp lệ.",
           "unauthorized": "Tài khoản hoặc mật khẩu không chính xác.",
           "notFound": "Tài khoản không tồn tại.",
-          "default": "Đã xảy ra lỗi không xác định."
+          "default": "Hệ thống đã xảy ra lỗi, vui lòng thử lại sau!"
         }
       },
       "signUp": {
@@ -78,7 +78,30 @@
           "badRequest": "Yêu cầu không hợp lệ.",
           "conflict": "Tên người dùng hoặc email đã tồn tại.",
           "notFound": "Không tìm thấy tài nguyên.",
-          "default": "Đã xảy ra lỗi không xác định."
+          "default": "Hệ thống đã xảy ra lỗi, vui lòng thử lại sau!"
+        }
+      },
+      "forgotPassword": {
+        "title": "Quên mật khẩu",
+        "subtitle": "Nhập email của bạn để nhận liên kết đặt lại mật khẩu",
+        "email": {
+          "label": "Email",
+          "placeholder": "Nhập email của bạn"
+        },
+        "submit": "Gửi liên kết đặt lại mật khẩu",
+        "reSendAfter": "Gửi lại sau {seconds} giây",
+        "toastSuccess": {
+          "title": "Thành công",
+          "description": "Đã gửi liên kết đặt lại mật khẩu. Vui lòng kiểm tra email của bạn!"
+        },
+        "validation": {
+          "email": "Email không hợp lệ"
+        },
+        "error": {
+          "title": "Đã xảy ra lỗi",
+          "badRequest": "Yêu cầu không hợp lệ.",
+          "notFound": "Không tìm thấy tài khoản.",
+          "default": "Hệ thống đã xảy ra lỗi, vui lòng thử lại sau!"
         }
       }
     },

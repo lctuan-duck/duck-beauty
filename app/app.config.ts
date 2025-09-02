@@ -3,7 +3,8 @@ export default defineAppConfig({
     meta: [
       {
         name: "viewport",
-        content: "width=device-width, initial-scale=1.0",
+        content:
+          "width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no",
       },
     ],
   },
@@ -13,7 +14,7 @@ export default defineAppConfig({
   },
   ui: {
     colors: {
-      primary: "pink",
+      primary: "cyan",
       neutral: "neutral",
     },
     button: {
@@ -23,7 +24,7 @@ export default defineAppConfig({
     },
     card: {
       slots: {
-        body: "p-4 sm:p-4",
+        body: "p-2 sm:p-2",
       },
     },
     drawer: {

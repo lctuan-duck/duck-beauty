@@ -123,7 +123,7 @@ function getErrorMessage() {
       </DuckBox>
 
       <!-- Social Auth -->
-      <AppAuthMoleculesAuthSocialCard />
+      <AppAuthMoleculesAuthSocialCard mode="SIGN_UP" />
 
       <!-- Divider -->
       <USeparator :label="t('appAuth.page.signUp.divider')" />
@@ -170,6 +170,7 @@ function getErrorMessage() {
             <template #trailing>
               <UButton
                 color="neutral"
+                tabindex="-1"
                 variant="link"
                 size="sm"
                 :icon="form.showPassword ? 'i-lucide-eye-off' : 'i-lucide-eye'"
@@ -197,6 +198,7 @@ function getErrorMessage() {
           >
             <template #trailing>
               <UButton
+                tabindex="-1"
                 color="neutral"
                 variant="link"
                 size="sm"

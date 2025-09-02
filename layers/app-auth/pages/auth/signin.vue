@@ -120,6 +120,7 @@ function getErrorMessage() {
               {{ t("appAuth.page.signin.password.label") }}
             </DuckText>
             <UButton
+              tabindex="-1"
               variant="link"
               :label="t('appAuth.page.signin.forgotPassword.label')"
               class="p-0"
@@ -138,6 +139,7 @@ function getErrorMessage() {
           >
             <template #trailing>
               <UButton
+                tabindex="-1"
                 color="neutral"
                 variant="link"
                 size="sm"

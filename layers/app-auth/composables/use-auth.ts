@@ -67,6 +67,25 @@ export function useAuth() {
       };
     }
   }
+  async function forgotPassword(email: string) {
+    try {
+      await $fetch("/api/proxy/v1/auth/forgot-password", {
+        method: "POST",
+        body: { email },
+      });
+
+      return {
+        status: REQUEST_STATUS.SUCCESS,
+        code: 200,
+      };
+    } catch (error) {
+      console.error("Forgot password error:", error);
+      return {
+        status: REQUEST_STATUS.ERROR,
+        code: (error as { statusCode: number }).statusCode || 0,
+      };
+    }
+  }
 
   return {
     user,
@@ -74,5 +93,6 @@ export function useAuth() {
     logout,
     register,
     refreshToken,
+    forgotPassword,
   };
 }

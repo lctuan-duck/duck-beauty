@@ -82,9 +82,13 @@ const EXTENSION_ITEMS = [
 
 <template>
   <DuckBox
-    class="flex flex-col gap-1 ring ring-[var(--ui-border-muted)] rounded-lg p-4"
+    class="flex flex-col gap-1 ring ring-[var(--ui-border-muted)] rounded-lg p-2"
   >
     <!-- list items extension -->
+
+    <!-- editor content -->
+    <EditorContent :editor="editor" class="p-2" />
+    <USeparator class="my-1" />
     <DuckBox class="flex gap-1 items-center justify-center">
       <UTooltip
         v-for="item in EXTENSION_ITEMS"
@@ -115,8 +119,5 @@ const EXTENSION_ITEMS = [
         </UDropdownMenu>
       </UTooltip>
     </DuckBox>
-    <USeparator class="my-2" />
-    <!-- editor content -->
-    <EditorContent :editor="editor" class="p-4" />
   </DuckBox>
 </template>

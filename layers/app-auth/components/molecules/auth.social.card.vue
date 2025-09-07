@@ -7,7 +7,26 @@ const props = withDefaults(
     mode: "SIGN_IN",
   }
 );
+
+const inProgressing = defineModel<boolean>("inProgressing", { default: false });
+
 const { t } = useI18n();
+const { loadGoogleScript, loginWithGoogle } = useGoogleAuth();
+
+onMounted(() => {
+  loadGoogleScript();
+});
+
+async function handleLoginWithGoogle() {
+  try {
+    inProgressing.value = true;
+    await loginWithGoogle();
+  } catch (error) {
+    console.error("Google login failed:", error);
+  } finally {
+    inProgressing.value = false;
+  }
+}
 </script>
 
 <template>
@@ -22,7 +41,12 @@ const { t } = useI18n();
       }}
     </DuckText>
     <DuckBox class="flex justify-center space-x-4">
-      <UButton icon="flat-color-icons:google" variant="soft" color="neutral" />
+      <UButton
+        icon="flat-color-icons:google"
+        variant="soft"
+        color="neutral"
+        @click="handleLoginWithGoogle"
+      />
       <UButton icon="logos:facebook" variant="soft" color="neutral" />
       <UButton icon="logos:twitter" variant="soft" color="neutral" />
       <UButton icon="bi:github" variant="soft" color="neutral" />

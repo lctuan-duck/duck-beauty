@@ -16,18 +16,23 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["./stores/**", "./utils/**", "./composables/**"],
   },
-  modules: ["@pinia/nuxt", "@nuxtjs/i18n", "@nuxt/eslint"],
+  modules: ["@pinia/nuxt", "@nuxtjs/i18n", "@nuxt/eslint", "nuxt-auth-utils"],
   css: ["~/assets/css/main.css"],
   /**
    * Modules configuration
    */
   i18n: {
-    lazy: true,
     langDir: "../locales",
     defaultLocale: "vi",
     locales: [
       { code: "en", file: "en.json" },
       { code: "vi", file: "vi.json" },
     ],
+  },
+
+  runtimeConfig: {
+    public: {
+      clientID: process.env.NUXT_OAUTH_GOOGLE_CLIENT_ID || "",
+    },
   },
 });

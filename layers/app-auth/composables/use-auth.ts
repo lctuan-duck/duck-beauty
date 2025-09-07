@@ -5,6 +5,26 @@ import { FetchError } from "ofetch";
 export function useAuth() {
   const { user, fetch: refreshSession, clear: clearSession } = useUserSession();
 
+  async function loginWithFacebook(body: { token: string }) {
+    try {
+      await $fetch("/api/v1/auth/facebook", {
+        method: "POST",
+        body,
+      });
+      await refreshSession();
+      return {
+        status: REQUEST_STATUS.SUCCESS,
+        code: 200,
+      };
+    } catch (error) {
+      console.error("Login error:", error);
+      return {
+        status: REQUEST_STATUS.ERROR,
+        code: (error as { statusCode: number }).statusCode || 0,
+      };
+    }
+  }
+
   async function login(body: { credential: string; password: string }) {
     try {
       await $fetch("/api/v1/auth/login", {
@@ -24,6 +44,7 @@ export function useAuth() {
       };
     }
   }
+
   async function register(body: RegisterReq) {
     try {
       await $fetch("/api/v1/auth/register", {
@@ -128,6 +149,7 @@ export function useAuth() {
   return {
     user,
     login,
+    loginWithFacebook,
     logout,
     register,
     refreshToken,

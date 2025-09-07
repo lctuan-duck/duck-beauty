@@ -85,7 +85,7 @@ function getErrorMessage() {
       </DuckBox>
 
       <!-- Social Auth -->
-      <AppAuthMoleculesAuthSocialCard />
+      <AppAuthMoleculesAuthSocialCard v-model:in-progressing="form.isPending" />
 
       <!-- Divider -->
       <USeparator :label="t('appAuth.page.signin.divider')" />

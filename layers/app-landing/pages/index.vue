@@ -7,6 +7,13 @@ definePageMeta({
 });
 
 const { t } = useI18n();
+const { user } = useAuth();
+const { initOneTap } = useGoogleAuth();
+
+onMounted(() => {
+  // Initialize Google One Tap
+  if (!user.value) initOneTap(false);
+});
 </script>
 
 <template>

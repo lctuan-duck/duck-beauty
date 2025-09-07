@@ -1,4 +1,5 @@
 export * from "./auth.res";
+export * from "./auth.google";
 
 export enum REQUEST_STATUS {
   IDLE = "IDLE",

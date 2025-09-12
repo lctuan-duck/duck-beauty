@@ -3,12 +3,16 @@ import type { UserAuthRes } from "~~/layers/app-auth/types";
 export default defineOAuthGoogleEventHandler({
   async onSuccess(event, data: { tokens: { id_token: string } }) {
     try {
+      // get device id from cookie
+      const deviceId = getCookie(event, "device-id") || "";
+
       const result = await $fetch<UserAuthRes>(
         `${process.env.APP_API_URL}/api/v1/auth/google`,
         {
           method: "POST",
           body: {
             credential: data.tokens.id_token,
+            deviceId,
           },
         }
       );
@@ -18,6 +22,7 @@ export default defineOAuthGoogleEventHandler({
           ...result.user,
           accessToken: result.token.accessToken,
           expiresAtAccess: result.token.expiresAtAccess,
+          sessionId: result.token.sessionId,
         },
         secure: {
           refreshToken: result.token.refreshToken,

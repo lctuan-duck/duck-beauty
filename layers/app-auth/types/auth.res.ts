@@ -3,6 +3,7 @@ export type TokenRes = {
   refreshToken: string;
   expiresAtAccess: number;
   expiresAtRefresh: number;
+  sessionId: string;
 };
 
 export type UserRes = {

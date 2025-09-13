@@ -5,12 +5,12 @@ const { resolve } = createResolver(import.meta.url);
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   alias: {
-    "#app-dark-room": resolve(""),
+    "#app-confession": resolve(""),
   },
   components: [
     {
       path: "./components",
-      prefix: "AppDarkRoom",
+      prefix: "AppConfession",
     },
   ],
   imports: {
@@ -22,7 +22,6 @@ export default defineNuxtConfig({
    * Modules configuration
    */
   i18n: {
-    lazy: true,
     langDir: "../locales",
     defaultLocale: "vi",
     locales: [

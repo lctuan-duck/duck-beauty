@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: "Dark Room - Welcome!",
+  title: "Confession - Welcome!",
 });
 </script>
 <template>

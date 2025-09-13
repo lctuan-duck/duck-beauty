@@ -1,0 +1,12 @@
+{
+  "appConfession": {
+    "title": "App Confession",
+    "description": "A simple app to demonstrate the use of the App Confession layer.",
+    "page": {},
+    "components": {
+      "mobile": {},
+      "desktop": {},
+      "platform": {}
+    }
+  }
+}

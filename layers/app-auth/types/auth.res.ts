@@ -10,9 +10,9 @@ export type UserRes = {
   id: string;
   email: string;
   username: string;
-  fullName: string;
-  phone: string;
-  avatar: string;
+  fullName?: string;
+  phone?: string;
+  avatar?: string;
   role: number;
   isAnonymous: boolean;
   createdAt: string;

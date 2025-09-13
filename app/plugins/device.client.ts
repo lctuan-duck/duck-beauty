@@ -1,4 +1,4 @@
-import { generateDeviceId } from "~/composables/use-device";
+import { useGenerateDeviceId } from "~/composables/use-device";
 
 export default defineNuxtPlugin(() => {
   if (import.meta.client) {
@@ -10,7 +10,7 @@ export default defineNuxtPlugin(() => {
     });
 
     if (!deviceCookie.value) {
-      deviceCookie.value = generateDeviceId();
+      deviceCookie.value = useGenerateDeviceId();
     }
   }
 });

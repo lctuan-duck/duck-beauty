@@ -1,4 +1,4 @@
-export function generateDeviceId(): string {
+export function useGenerateDeviceId(): string {
   try {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");

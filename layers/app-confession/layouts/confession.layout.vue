@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from "@nuxt/ui";
-import { SIZE } from "~/constants";
+import { SIZE } from "#app-base/constants";
 
 const colorMode = useColorMode();
 const { user } = useAuth();

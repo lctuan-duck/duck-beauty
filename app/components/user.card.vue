@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { UserRes } from "~~/layers/app-auth/types";
+import type { UserRes } from "#app-auth/types";
 
 withDefaults(
   defineProps<{

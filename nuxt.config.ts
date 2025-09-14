@@ -5,7 +5,7 @@ const { resolve } = createResolver(import.meta.url);
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   alias: {
-    "~": resolve(__dirname, "app"),
+    "#app-base": resolve(__dirname, "app"),
   },
   app: {
     head: {
@@ -34,8 +34,11 @@ export default defineNuxtConfig({
       ],
     },
   },
-  compatibilityDate: "2025-07-15",
+  compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
+  future: {
+    compatibilityVersion: 4,
+  },
   imports: {
     dirs: ["./server/utils/**"],
   },

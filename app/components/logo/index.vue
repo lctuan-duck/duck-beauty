@@ -2,9 +2,11 @@
 withDefaults(
   defineProps<{
     type?: "img" | "label";
+    to?: string;
   }>(),
   {
     type: "img",
+    to: "/",
   }
 );
 </script>
@@ -14,12 +16,19 @@ withDefaults(
     <DuckImg
       src="/images/logo.png"
       alt="Logo DuckBeauty"
-      class="w-10 object-cover"
+      class="w-10 object-cover cursor-pointer"
       v-bind="$attrs"
+      @click="navigateTo(to)"
     />
     <DuckText as="span" class="pacifico-regular">Duck Beauty</DuckText>
   </DuckBox>
-  <DuckText v-else as="span" class="pacifico-regular text-2xl" v-bind="$attrs">
+  <DuckText
+    v-else
+    as="span"
+    class="pacifico-regular text-2xl cursor-pointer"
+    v-bind="$attrs"
+    @click="navigateTo(to)"
+  >
     Duck Beauty
   </DuckText>
 </template>

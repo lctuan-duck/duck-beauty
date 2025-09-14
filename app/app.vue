@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <NuxtLoadingIndicator />
@@ -9,9 +8,9 @@
     }"
   >
     <DuckBox vaul-drawer-wrapper>
-        <NuxtLayout>
-          <NuxtPage />
-        </NuxtLayout>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
     </DuckBox>
   </UApp>
 </template>

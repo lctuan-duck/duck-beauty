@@ -6,10 +6,12 @@ const props = withDefaults(
   defineProps<{
     src?: string;
     element?: "img" | "nuxt-img";
+    loading?: "lazy" | "eager";
   }>(),
   {
     src: IMAGE_DEFAULT.PLACEHOLDER,
     element: "nuxt-img",
+    loading: "lazy",
   }
 );
 
@@ -23,7 +25,7 @@ const { isLoading, error } = useImage({ src: props.src }, { delay: 0 });
     alt="image"
     width="100%"
     height="100%"
-    loading="lazy"
+    :loading="loading"
     placeholder="blur"
     decoding="async"
     v-bind="$attrs"
@@ -34,7 +36,7 @@ const { isLoading, error } = useImage({ src: props.src }, { delay: 0 });
     alt="image"
     width="100%"
     height="100%"
-    loading="lazy"
+    :loading="loading"
     decoding="async"
     :class="[
       'transition-all duration-700 ease-in-out',

@@ -22,7 +22,6 @@ export default defineNuxtConfig({
    * Modules configuration
    */
   i18n: {
-    lazy: true,
     langDir: "../locales",
     defaultLocale: "vi",
     locales: [

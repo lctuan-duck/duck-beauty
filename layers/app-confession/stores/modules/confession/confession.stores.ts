@@ -5,7 +5,6 @@ import type { ConfessionState } from "./confession.type";
 import type { ConfessionResponse } from "~~/layers/app-confession/types/confession";
 import { useStorageMap } from "~/composables/use-storage-map";
 
-//TODO: change the name of the store
 export const useConfessionStore = defineStore(STORES.CONFESSION, () => {
   const state = reactive<ConfessionState>({
     confessions: useStorageMap<CACHE_KEYS.CONFESSION, ConfessionResponse>(

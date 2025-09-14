@@ -1,5 +1,3 @@
-import { useGenerateDeviceId } from "~/composables/use-device";
-
 export default defineNuxtPlugin(() => {
   if (import.meta.client) {
     const deviceCookie = useCookie("device-id", {

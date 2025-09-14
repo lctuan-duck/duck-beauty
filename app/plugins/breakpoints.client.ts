@@ -1,4 +1,3 @@
-import { defineNuxtPlugin } from "#app";
 import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 
 export default defineNuxtPlugin((nuxtApp) => {

@@ -1,22 +1,35 @@
 <script setup lang="ts">
-import { useEditor, EditorContent } from "@tiptap/vue-3";
+import { useEditor, EditorContent, type JSONContent } from "@tiptap/vue-3";
 import { DragHandle } from "@tiptap/extension-drag-handle";
 import StarterKit from "@tiptap/starter-kit";
 import NodeRange from "@tiptap/extension-node-range";
 import Image from "@tiptap/extension-image";
 
+const props = withDefaults(
+  defineProps<{
+    editable?: boolean;
+    content?: JSONContent;
+  }>(),
+  {
+    editable: true,
+    content: undefined,
+  }
+);
+
 const editor = useEditor({
-  content: "",
+  content: props.content,
+  editable: props.editable,
   extensions: [
     StarterKit,
-    DragHandle,
     NodeRange,
     Image.configure({
       allowBase64: true,
     }),
+    ...(props.editable ? [DragHandle] : []),
   ],
   editorProps: {
     attributes: {
+      class: props.editable ? "" : "!min-h-0",
       autocomplete: "off",
       autocorrect: "off",
       autocapitalize: "off",
@@ -82,14 +95,16 @@ const EXTENSION_ITEMS = [
 
 <template>
   <DuckBox
-    class="flex flex-col gap-1 ring ring-[var(--ui-border-muted)] rounded-lg p-2"
+    class="flex flex-col gap-1"
+    :class="{
+      'p-2 ring ring-[var(--ui-border-muted)] rounded-lg': editable,
+    }"
   >
-    <!-- list items extension -->
-
     <!-- editor content -->
-    <EditorContent :editor="editor" class="p-2" />
-    <USeparator class="my-1" />
-    <DuckBox class="flex gap-1 items-center justify-center">
+    <EditorContent :editor="editor" />
+    <USeparator v-if="editable" class="my-1" />
+    <!-- list items extension -->
+    <DuckBox v-if="editable" class="flex gap-1 items-center justify-center">
       <UTooltip
         v-for="item in EXTENSION_ITEMS"
         :key="item.label"

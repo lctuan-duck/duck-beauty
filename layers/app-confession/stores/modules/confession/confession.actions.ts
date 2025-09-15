@@ -1,10 +1,10 @@
 import type { PaginationMeta, QueryRequest } from "~/types/pagination";
-import type { ConfessionResponse } from "~~/layers/app-confession/types/confession";
+import type { Confession } from "#app-confession/types/confession";
 
 export function useActions() {
   async function fetchConfessions(query?: QueryRequest) {
     try {
-      const response = await $fetch<PaginationMeta<ConfessionResponse>>(
+      const response = await $fetch<PaginationMeta<Confession>>(
         "/api/proxy/v1/confessions",
         { method: "GET", query: query }
       );
@@ -17,7 +17,7 @@ export function useActions() {
 
   async function fetchConfessionById(id: string) {
     try {
-      const response = await $fetch<ConfessionResponse>(
+      const response = await $fetch<Confession>(
         `/api/proxy/v1/confessions/${id}`
       );
 

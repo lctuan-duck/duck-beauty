@@ -15,21 +15,21 @@ withDefaults(
   <DuckBox v-if="type === 'img'" class="flex items-center gap-1">
     <DuckImg
       src="/images/logo.png"
-      alt="Logo DuckBeauty"
+      alt="Logo"
       class="w-10 object-cover cursor-pointer"
       v-bind="$attrs"
       @click="navigateTo(to)"
     />
-    <DuckText as="span" class="pacifico-regular">Duck Beauty</DuckText>
+    <DuckText as="span" class="pacifico-regular">Duck</DuckText>
   </DuckBox>
   <DuckText
     v-else
     as="span"
-    class="pacifico-regular text-2xl cursor-pointer"
+    class="pacifico-regular text-2xl cursor-pointer text-center"
     v-bind="$attrs"
     @click="navigateTo(to)"
   >
-    Duck Beauty
+    Duck
   </DuckText>
 </template>
 

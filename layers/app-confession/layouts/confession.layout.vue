@@ -60,7 +60,7 @@ function useLink(to: string, exact = false) {
   <DuckBox class="flex h-full w-full">
     <!-- navigation left -->
     <DuckBox
-      class="h-dvh p-2 flex flex-col gap-4 justify-between"
+      class="h-dvh p-2 flex flex-col gap-4 justify-between sticky top-0"
       :style="{ width: SIZE.SIDEBAR_WIDTH + 'px' }"
     >
       <!-- logo -->

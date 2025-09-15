@@ -7,7 +7,7 @@ export interface ConfessionUser {
   fullName?: string;
 }
 
-interface Confession {
+interface ConfessionBase {
   id: string;
   userId?: string;
   user: ConfessionUser;
@@ -23,6 +23,6 @@ interface Confession {
   updatedAt: Date;
 }
 
-export type ConfessionResponse =
-  | ({ isAnonymous: true } & Omit<Confession, "user" | "userId"> & {})
-  | ({ isAnonymous: false } & Confession);
+export type Confession =
+  | ({ isAnonymous: true } & Omit<ConfessionBase, "user" | "userId"> & {})
+  | ({ isAnonymous: false } & ConfessionBase);

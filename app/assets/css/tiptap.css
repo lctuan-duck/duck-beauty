@@ -219,3 +219,12 @@
   transition: background-color 0.2s;
   cursor: grabbing;
 }
+
+/* editor empty state */
+.tiptap p.is-editor-empty:first-child::before {
+  color: var(--ui-text-muted);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

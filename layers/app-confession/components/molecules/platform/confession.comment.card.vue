@@ -29,7 +29,7 @@ const props = defineProps<{
         </DuckBox>
         <!-- footer (like, reply, re-post) -->
         <DuckBox class="-ml-3 flex items-center gap-2">
-          <AppConfessionMoleculesPlatformActionBarCard />
+          <AppConfessionMoleculesPlatformConfessionActionBarCard />
           <!-- @like="(reaction) => $emit('like', reaction)"
           @reply="$emit('reply')"
           @re-post="$emit('repost')" -->

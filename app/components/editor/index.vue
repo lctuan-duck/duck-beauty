@@ -4,17 +4,24 @@ import { DragHandle } from "@tiptap/extension-drag-handle";
 import StarterKit from "@tiptap/starter-kit";
 import NodeRange from "@tiptap/extension-node-range";
 import Image from "@tiptap/extension-image";
+import { Placeholder } from "@tiptap/extensions";
 
 const props = withDefaults(
   defineProps<{
     editable?: boolean;
     content?: JSONContent;
+    editorClass?: string;
   }>(),
   {
     editable: true,
     content: undefined,
+    editorClass: "",
   }
 );
+
+const emits = defineEmits<{
+  (e: "update:content", content: JSONContent): void;
+}>();
 
 const editor = useEditor({
   content: props.content,
@@ -25,11 +32,18 @@ const editor = useEditor({
     Image.configure({
       allowBase64: true,
     }),
+    Placeholder.configure({
+      placeholder: "Bạn đang có tâm sự gì ư? …",
+    }),
     ...(props.editable ? [DragHandle] : []),
   ],
   editorProps: {
     attributes: {
-      class: props.editable ? "" : "!min-h-0",
+      class:
+        "overflow-y-auto scroll-smaller h-full" +
+        (props.editable
+          ? ` ${props.editorClass}`
+          : ` ${props.editorClass} !min-h-0`),
       autocomplete: "off",
       autocorrect: "off",
       autocapitalize: "off",
@@ -37,6 +51,13 @@ const editor = useEditor({
     },
   },
 });
+
+watch(
+  () => editor.value?.getJSON(),
+  (newContent) => {
+    emits("update:content", newContent as JSONContent);
+  }
+);
 
 const EXTENSION_ITEMS = [
   {
@@ -97,11 +118,11 @@ const EXTENSION_ITEMS = [
   <DuckBox
     class="flex flex-col gap-1"
     :class="{
-      'p-2 ring ring-[var(--ui-border-muted)] rounded-lg': editable,
+      'p-4 ring ring-[var(--ui-border-muted)] rounded-lg': editable,
     }"
   >
     <!-- editor content -->
-    <EditorContent :editor="editor" />
+    <EditorContent class="h-full" :editor="editor" />
     <USeparator v-if="editable" class="my-1" />
     <!-- list items extension -->
     <DuckBox v-if="editable" class="flex gap-1 items-center justify-center">

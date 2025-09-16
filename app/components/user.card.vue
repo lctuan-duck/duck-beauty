@@ -6,11 +6,13 @@ withDefaults(
     user?: Pick<UserRes, "username" | "avatar" | "id" | "fullName">;
     isAnonymous?: boolean;
     titleClass?: string;
+    isShowContent?: boolean;
   }>(),
   {
     isAnonymous: false,
     user: undefined,
     titleClass: "",
+    isShowContent: true,
   }
 );
 </script>
@@ -20,7 +22,7 @@ withDefaults(
     <!-- User Avatar -->
     <UAvatar size="lg" :src="getAvatarUrl()" alt="User Avatar" />
     <!-- content -->
-    <DuckBox>
+    <DuckBox v-if="isShowContent">
       <!-- username -->
       <DuckBox :class="titleClass">
         <DuckText class="font-medium">{{ getRandomUsername() }}</DuckText>
@@ -34,7 +36,7 @@ withDefaults(
     <!-- User Avatar -->
     <UAvatar size="lg" :src="getAvatarUrl(user.avatar)" alt="User Avatar" />
     <!-- content -->
-    <DuckBox>
+    <DuckBox v-if="isShowContent">
       <!-- username -->
       <DuckBox :class="titleClass">
         <DuckText class="font-medium">{{ user.username }}</DuckText>

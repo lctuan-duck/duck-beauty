@@ -65,8 +65,9 @@ const anonymousConfession: Confession[] = [
 <template>
   <DuckBox class="w-full py-4">
     <DuckBox class="w-full max-w-xl m-auto">
+      <AppConfessionMoleculesPlatformConfessionCreate class="mb-4" />
       <DuckBox class="flex flex-col gap-4">
-        <AppConfessionMoleculesPlatformConfessionCard
+        <AppConfessionMoleculesPlatformConfessionPostCard
           v-for="item in anonymousConfession"
           :key="item.id"
           :item="item"

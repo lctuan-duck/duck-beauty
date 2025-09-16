@@ -40,7 +40,7 @@ async function onCopyLink() {
 </script>
 
 <template>
-  <UCard class="w-full p-3">
+  <UCard class="w-full p-3 rounded-2xl">
     <DuckBox class="flex flex-col gap-1">
       <!-- user -->
       <DuckBox class="flex items-center justify-between">
@@ -49,7 +49,7 @@ async function onCopyLink() {
           :user="item?.isAnonymous ? undefined : item.user"
         >
           <template #subtitle>
-            <DuckText class="text-sm text-[var(--ui-text-muted)]">
+            <DuckText class="text-xs text-[var(--ui-text-muted)]">
               {{ useTimeAgo(item?.createdAt) }}
             </DuckText>
           </template>
@@ -80,7 +80,7 @@ async function onCopyLink() {
       </DuckBox>
       <!-- footer (like, reply, re-post) -->
       <DuckBox class="-ml-3 flex items-center gap-2">
-        <AppConfessionMoleculesPlatformActionBarCard />
+        <AppConfessionMoleculesPlatformConfessionActionBarCard />
         <!-- @like="(reaction) => $emit('like', reaction)"
           @reply="$emit('reply')"
           @re-post="$emit('repost')" -->

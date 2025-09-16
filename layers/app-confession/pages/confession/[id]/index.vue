@@ -81,7 +81,7 @@ const mockComment: Comment = {
     >
       <DuckBox class="flex flex-col">
         <!-- post -->
-        <AppConfessionMoleculesPlatformConfessionCard
+        <AppConfessionMoleculesPlatformConfessionPostCard
           :item="anonymousConfession"
         />
         <!-- comments -->
@@ -89,16 +89,24 @@ const mockComment: Comment = {
           class="-mt-1 flex flex-col bg-[var(--ui-bg)] ring-1 ring-[var(--ui-border)] rounded-b-lg overflow-hidden"
         >
           <DuckBox class="ring-1 ring-[var(--ui-border)]">
-            <AppConfessionMoleculesPlatformCommentCard :item="mockComment" />
+            <AppConfessionMoleculesPlatformConfessionCommentCard
+              :item="mockComment"
+            />
           </DuckBox>
           <DuckBox class="ring-1 ring-[var(--ui-border)]">
-            <AppConfessionMoleculesPlatformCommentCard :item="mockComment" />
+            <AppConfessionMoleculesPlatformConfessionCommentCard
+              :item="mockComment"
+            />
           </DuckBox>
           <DuckBox class="ring-1 ring-[var(--ui-border)]">
-            <AppConfessionMoleculesPlatformCommentCard :item="mockComment" />
+            <AppConfessionMoleculesPlatformConfessionCommentCard
+              :item="mockComment"
+            />
           </DuckBox>
           <DuckBox class="ring-1 ring-[var(--ui-border)]">
-            <AppConfessionMoleculesPlatformCommentCard :item="mockComment" />
+            <AppConfessionMoleculesPlatformConfessionCommentCard
+              :item="mockComment"
+            />
           </DuckBox>
         </DuckBox>
       </DuckBox>

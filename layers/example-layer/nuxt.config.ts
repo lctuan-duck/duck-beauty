@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   },
   components: [
     {
-      path: "./components",
+      path: "components",
       prefix: "ExampleLayer", //TODO: tiền tố cho các component trong layer
     },
   ],
@@ -22,7 +22,7 @@ export default defineNuxtConfig({
    * Modules configuration
    */
   i18n: {
-    langDir: "../locales",
+    langDir: "../app/locales",
     defaultLocale: "vi",
     locales: [
       { code: "en", file: "en.json" },

@@ -1,4 +1,4 @@
-import type { UserAuthRes } from "~~/layers/app-auth/types";
+import type { UserAuthRes } from "#app-auth/app/types";
 
 export default defineOAuthGoogleEventHandler({
   async onSuccess(event, data: { tokens: { id_token: string } }) {

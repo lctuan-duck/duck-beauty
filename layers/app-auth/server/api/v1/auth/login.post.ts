@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { UserAuthRes } from "#app-auth/types";
+import type { UserAuthRes } from "#app-auth/app/types";
 
 const bodySchema = z.object({
   credential: z.string(),

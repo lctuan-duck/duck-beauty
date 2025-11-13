@@ -24,21 +24,21 @@ const handleError = () => clearError({ redirect: "/" });
 </script>
 
 <template>
-  <DuckBox
+  <div
     class="flex flex-col items-center justify-center min-h-screen bg-[var(--ui-bg)]"
   >
     <DuckImg class="max-w-md" loading="eager" />
-    <DuckBox class="text-7xl font-bold text-primary mb-4">
+    <div class="text-7xl font-bold text-primary mb-4">
       {{ props.error?.statusCode }}
-    </DuckBox>
-    <DuckBox class="text-2xl font-semibold mb-2">
+    </div>
+    <div class="text-2xl font-semibold mb-2">
       {{ props.error?.statusMessage }}
-    </DuckBox>
-    <DuckBox class="text-neutral-500 mb-6 text-center">
+    </div>
+    <div class="text-neutral-500 mb-6 text-center">
       {{ getErrorMessage(props.error) }}
-    </DuckBox>
+    </div>
     <UButton variant="soft" size="lg" icon="i-lucide-home" @click="handleError">
       Quay về trang chủ
     </UButton>
-  </DuckBox>
+  </div>
 </template>

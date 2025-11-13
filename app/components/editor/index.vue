@@ -115,7 +115,7 @@ const EXTENSION_ITEMS = [
 </script>
 
 <template>
-  <DuckBox
+  <div
     class="flex flex-col gap-1"
     :class="{
       'p-4 ring ring-[var(--ui-border-muted)] rounded-lg': editable,
@@ -125,7 +125,7 @@ const EXTENSION_ITEMS = [
     <EditorContent class="h-full" :editor="editor" />
     <USeparator v-if="editable" class="my-1" />
     <!-- list items extension -->
-    <DuckBox v-if="editable" class="flex gap-1 items-center justify-center">
+    <div v-if="editable" class="flex gap-1 items-center justify-center">
       <UTooltip
         v-for="item in EXTENSION_ITEMS"
         :key="item.label"
@@ -154,6 +154,6 @@ const EXTENSION_ITEMS = [
           <UButton :icon="item.icon" color="neutral" variant="ghost" />
         </UDropdownMenu>
       </UTooltip>
-    </DuckBox>
-  </DuckBox>
+    </div>
+  </div>
 </template>

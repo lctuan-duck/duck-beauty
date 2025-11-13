@@ -59,13 +59,12 @@ const itemsDropdown = computed<DropdownMenuItem[]>(() => [
 
 <template>
   <!-- Header -->
-  <DuckBox
-    as="header"
+  <header
     class="flex items-center justify-between px-8 py-4 sticky top-0 bg-[var(--ui-bg)] z-10 shadow"
   >
-    <DuckBox class="flex items-center space-x-2">
+    <div class="flex items-center space-x-2">
       <DuckLogo />
-    </DuckBox>
+    </div>
     <UNavigationMenu
       :items="itemsComputed"
       variant="link"
@@ -75,7 +74,7 @@ const itemsDropdown = computed<DropdownMenuItem[]>(() => [
         <UBadge label="44" variant="subtle" size="sm" />
       </template>
     </UNavigationMenu>
-    <DuckBox class="gap-2 hidden md:flex items-center">
+    <div class="gap-2 hidden md:flex items-center">
       <!-- use ClientOnly to remove mismatch error -->
       <ClientOnly>
         <UButton
@@ -88,7 +87,7 @@ const itemsDropdown = computed<DropdownMenuItem[]>(() => [
         </UButton>
       </ClientOnly>
       <!-- user card -->
-      <DuckBox v-if="user?.id" class="gap-2 flex items-center">
+      <div v-if="user?.id" class="gap-2 flex items-center">
         <UDropdownMenu
           size="lg"
           :items="itemsDropdown"
@@ -114,9 +113,9 @@ const itemsDropdown = computed<DropdownMenuItem[]>(() => [
           :label="t('appLanding.page.index.header.cta.manicure')"
           size="lg"
         />
-      </DuckBox>
+      </div>
       <!-- button signin/signup -->
-      <DuckBox v-else class="gap-2 flex items-center">
+      <div v-else class="gap-2 flex items-center">
         <UButton
           :label="t('appAuth.page.signin.title')"
           variant="ghost"
@@ -128,9 +127,9 @@ const itemsDropdown = computed<DropdownMenuItem[]>(() => [
           size="lg"
           to="/auth/signup"
         />
-      </DuckBox>
-    </DuckBox>
-  </DuckBox>
+      </div>
+    </div>
+  </header>
   <!-- main -->
   <slot />
 </template>

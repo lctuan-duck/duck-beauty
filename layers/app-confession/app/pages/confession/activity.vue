@@ -8,7 +8,7 @@ definePageMeta({
 });
 </script>
 <template>
-  <DuckBox class="p-4">
+  <div class="p-4">
     <UInput placeholder="Search..." size="lg" class="w-full" />
-  </DuckBox>
+  </div>
 </template>

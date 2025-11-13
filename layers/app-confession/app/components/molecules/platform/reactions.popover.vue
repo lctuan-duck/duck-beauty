@@ -58,7 +58,7 @@ function onSelect(reaction: (typeof REACTIONS)[number]) {
       />
     </slot>
     <template #content>
-      <DuckBox class="grid grid-cols-5 gap-2 p-2">
+      <div class="grid grid-cols-5 gap-2 p-2">
         <UTooltip
           v-for="reaction in REACTIONS"
           :key="reaction.type"
@@ -73,7 +73,7 @@ function onSelect(reaction: (typeof REACTIONS)[number]) {
             @click="onSelect(reaction)"
           />
         </UTooltip>
-      </DuckBox>
+      </div>
     </template>
   </UPopover>
 </template>

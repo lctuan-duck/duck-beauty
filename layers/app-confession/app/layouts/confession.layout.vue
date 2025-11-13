@@ -57,15 +57,15 @@ function useLink(to: string, exact = false) {
 </script>
 
 <template>
-  <DuckBox class="flex h-full w-full">
+  <div class="flex h-full w-full">
     <!-- navigation left -->
-    <DuckBox
+    <div
       class="h-dvh p-2 flex flex-col gap-4 justify-between sticky top-0"
       :style="{ width: SIZE.SIDEBAR_WIDTH + 'px' }"
     >
       <!-- logo -->
       <DuckLogo type="label" class="text-base" />
-      <DuckBox class="flex flex-col flex-1 items-center justify-start gap-2">
+      <div class="flex flex-col flex-1 items-center justify-start gap-2">
         <UButton
           v-for="item in NAV_ITEMS"
           :key="item.label"
@@ -76,8 +76,8 @@ function useLink(to: string, exact = false) {
           :color="useLink(item.to, item?.exact) ? 'primary' : 'neutral'"
           :variant="useLink(item.to, item?.exact) ? 'soft' : 'ghost'"
         />
-      </DuckBox>
-      <DuckBox class="flex flex-col gap-2 items-center justify-center">
+      </div>
+      <div class="flex flex-col gap-2 items-center justify-center">
         <UButton
           color="neutral"
           variant="soft"
@@ -106,12 +106,12 @@ function useLink(to: string, exact = false) {
             />
           </UButton>
         </UDropdownMenu>
-      </DuckBox>
-    </DuckBox>
+      </div>
+    </div>
 
     <!-- page -->
-    <DuckBox class="flex-1 p-2 bg-[var(--ui-bg-muted)]">
+    <div class="flex-1 p-2 bg-[var(--ui-bg-muted)]">
       <slot />
-    </DuckBox>
-  </DuckBox>
+    </div>
+  </div>
 </template>

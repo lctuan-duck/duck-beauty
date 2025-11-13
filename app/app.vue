@@ -7,10 +7,10 @@
       position: 'bottom-left',
     }"
   >
-    <DuckBox vaul-drawer-wrapper>
+    <div vaul-drawer-wrapper>
       <NuxtLayout>
         <NuxtPage />
       </NuxtLayout>
-    </DuckBox>
+    </div>
   </UApp>
 </template>

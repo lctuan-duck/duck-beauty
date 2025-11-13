@@ -3,24 +3,24 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <DuckBox as="footer" class="px-8 py-12 bg-[var(--ui-bg-elevated)] mt-16">
-    <DuckBox class="grid md:grid-cols-5 gap-8">
-      <DuckBox class="col-span-2 space-y-4">
-        <DuckBox class="flex items-center space-x-2">
+  <footer class="px-8 py-12 bg-[var(--ui-bg-elevated)] mt-16">
+    <div class="grid md:grid-cols-5 gap-8">
+      <div class="col-span-2 space-y-4">
+        <div class="flex items-center space-x-2">
           <DuckLogo />
-        </DuckBox>
+        </div>
         <DuckText class="text-[var(--ui-text-muted)]">
           {{ t("appLanding.page.index.footer.about.desc") }}
         </DuckText>
-        <DuckBox class="flex space-x-3">
+        <div class="flex space-x-3">
           <DuckText class="text-[var(--ui-text-dimmed)]">Fb</DuckText>
           <DuckText class="text-[var(--ui-text-dimmed)]">Tw</DuckText>
           <DuckText class="text-[var(--ui-text-dimmed)]">In</DuckText>
           <DuckText class="text-[var(--ui-text-dimmed)]">Be</DuckText>
-        </DuckBox>
-      </DuckBox>
+        </div>
+      </div>
 
-      <DuckBox>
+      <div>
         <DuckText class="font-semibold mb-4">
           {{ t("appLanding.page.index.footer.quickLinks.title") }}
         </DuckText>
@@ -36,9 +36,9 @@ const { t } = useI18n();
         <DuckText class="text-[var(--ui-text-muted)]">
           {{ t("appLanding.page.index.footer.quickLinks.pricing") }}
         </DuckText>
-      </DuckBox>
+      </div>
 
-      <DuckBox>
+      <div>
         <DuckText class="font-semibold mb-4">
           {{ t("appLanding.page.index.footer.services.title") }}
         </DuckText>
@@ -54,9 +54,9 @@ const { t } = useI18n();
         <DuckText class="text-[var(--ui-text-muted)]">
           {{ t("appLanding.page.index.footer.services.skincare") }}
         </DuckText>
-      </DuckBox>
+      </div>
 
-      <DuckBox>
+      <div>
         <DuckText class="font-semibold mb-4">
           {{ t("appLanding.page.index.footer.newsletter.title") }}
         </DuckText>
@@ -71,11 +71,11 @@ const { t } = useI18n();
             class="w-full"
           />
         </UFormField>
-      </DuckBox>
-    </DuckBox>
+      </div>
+    </div>
 
-    <DuckBox class="mt-8 text-center text-sm text-[var(--ui-text-dimmed)]">
+    <div class="mt-8 text-center text-sm text-[var(--ui-text-dimmed)]">
       {{ t("appLanding.page.index.footer.copyright") }}
-    </DuckBox>
-  </DuckBox>
+    </div>
+  </footer>
 </template>

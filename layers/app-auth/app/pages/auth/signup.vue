@@ -114,20 +114,20 @@ function getErrorMessage() {
 </script>
 
 <template>
-  <DuckBox class="max-sm:mx-4 sm:w-[400px]">
+  <div class="max-sm:mx-4 sm:w-[400px]">
     <!-- Form Card -->
-    <DuckBox
+    <div
       class="p-8 w-full max-w-md space-y-4 relative overflow-hidden bg-[var(--ui-bg)] shadow-xl rounded-xl ring ring-[var(--ui-border)]"
     >
       <!-- Header -->
-      <DuckBox class="text-center space-y-1">
+      <div class="text-center space-y-1">
         <DuckText class="text-2xl font-semibold">
           {{ t("appAuth.page.signUp.title") }}
         </DuckText>
         <DuckText class="text-sm text-[var(--ui-text-dimmed)]">
           {{ t("appAuth.page.signUp.subtitle") }}
         </DuckText>
-      </DuckBox>
+      </div>
 
       <!-- Social Auth -->
       <AppAuthMoleculesAuthSocialCard mode="SIGN_UP" />
@@ -241,7 +241,7 @@ function getErrorMessage() {
         icon="i-lucide-x-circle"
       />
       <!-- Footer -->
-      <DuckBox class="flex items-center gap-1 justify-center">
+      <div class="flex items-center gap-1 justify-center">
         <DuckText class="text-sm text-[var(--ui-text-muted)]">
           {{ t("appAuth.page.signUp.footerText") }}
         </DuckText>
@@ -251,7 +251,7 @@ function getErrorMessage() {
           class="p-0"
           to="/auth/signin"
         />
-      </DuckBox>
-    </DuckBox>
-  </DuckBox>
+      </div>
+    </div>
+  </div>
 </template>

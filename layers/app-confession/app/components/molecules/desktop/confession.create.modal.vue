@@ -72,7 +72,7 @@ function onChangeAnonymous(value: boolean) {
   >
     <slot>
       <UCard class="rounded-2xl">
-        <DuckBox class="flex items-center gap-2 p-3 justify-between">
+        <div class="flex items-center gap-2 p-3 justify-between">
           <DuckUserCard v-if="user" :user="user" :is-show-content="false" />
           <DuckText class="flex-1 font-medium text-[var(--ui-text-muted)]">
             {{ mergedConfigs.openPlaceholder }}
@@ -82,17 +82,17 @@ function onChangeAnonymous(value: boolean) {
             variant="soft"
             :label="mergedConfigs.openLabel"
           />
-        </DuckBox>
+        </div>
       </UCard>
     </slot>
 
     <template #content>
-      <DuckBox>
+      <div>
         <!-- header -->
         <slot name="header">
-          <DuckBox class="grid grid-cols-7 grid-rows-1 p-2">
+          <div class="grid grid-cols-7 grid-rows-1 p-2">
             <!-- cancel button -->
-            <DuckBox class="col-span-2 flex items-center justify-start">
+            <div class="col-span-2 flex items-center justify-start">
               <UButton
                 :icon="mergedConfigs.cancelIcon"
                 color="neutral"
@@ -100,13 +100,13 @@ function onChangeAnonymous(value: boolean) {
                 variant="ghost"
                 @click="isOpen = false"
               />
-            </DuckBox>
+            </div>
             <!-- title -->
             <DuckText class="col-span-3 text-lg font-medium text-center">
               {{ mergedConfigs.title }}
             </DuckText>
             <!-- more action -->
-            <DuckBox class="col-span-2 flex items-center justify-end">
+            <div class="col-span-2 flex items-center justify-end">
               <UDropdownMenu
                 :items="MENU_ACTIONS"
                 :content="{
@@ -125,19 +125,19 @@ function onChangeAnonymous(value: boolean) {
                   class="rounded-full"
                 />
               </UDropdownMenu>
-            </DuckBox>
-          </DuckBox>
+            </div>
+          </div>
         </slot>
 
         <!-- body -->
-        <DuckBox class="p-3">
+        <div class="p-3">
           <DuckEditor
             editor-class="!min-h-20 !max-h-96"
             @update:content="content = $event"
           />
-        </DuckBox>
+        </div>
         <!-- footer -->
-        <DuckBox class="flex items-center justify-between p-2">
+        <div class="flex items-center justify-between p-2">
           <USwitch
             unchecked-icon="i-lucide-x"
             checked-icon="i-lucide-check"
@@ -151,8 +151,8 @@ function onChangeAnonymous(value: boolean) {
             :label="mergedConfigs.confirmLabel"
             @click="onConfirm"
           />
-        </DuckBox>
-      </DuckBox>
+        </div>
+      </div>
     </template>
   </UModal>
 </template>

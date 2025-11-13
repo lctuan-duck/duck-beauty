@@ -7,7 +7,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <DuckBox class="gap-3 bg-[var(--ui-bg)] p-3">
+  <div class="gap-3 bg-[var(--ui-bg)] p-3">
     <!-- User Avatar -->
     <DuckUserCard
       :is-anonymous="item?.isAnonymous"
@@ -22,19 +22,19 @@ const props = defineProps<{
       </template>
       <template #content>
         <!-- user content -->
-        <DuckBox class="mb-1">
-          <DuckBox>
+        <div class="mb-1">
+          <div>
             <DuckEditor :content="item?.content" :editable="false" />
-          </DuckBox>
-        </DuckBox>
+          </div>
+        </div>
         <!-- footer (like, reply, re-post) -->
-        <DuckBox class="-ml-3 flex items-center gap-2">
+        <div class="-ml-3 flex items-center gap-2">
           <AppConfessionMoleculesPlatformConfessionActionBarCard />
           <!-- @like="(reaction) => $emit('like', reaction)"
           @reply="$emit('reply')"
           @re-post="$emit('repost')" -->
-        </DuckBox>
+        </div>
       </template>
     </DuckUserCard>
-  </DuckBox>
+  </div>
 </template>

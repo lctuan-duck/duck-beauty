@@ -30,7 +30,7 @@ async function handleLoginWithGoogle() {
 </script>
 
 <template>
-  <DuckBox class="text-center space-y-4">
+  <div class="text-center space-y-4">
     <DuckText class="text-sm font-medium">
       {{
         t(
@@ -40,7 +40,7 @@ async function handleLoginWithGoogle() {
         )
       }}
     </DuckText>
-    <DuckBox class="flex justify-center space-x-4">
+    <div class="flex justify-center space-x-4">
       <UButton
         icon="flat-color-icons:google"
         variant="soft"
@@ -50,6 +50,6 @@ async function handleLoginWithGoogle() {
       <UButton icon="logos:facebook" variant="soft" color="neutral" />
       <UButton icon="logos:twitter" variant="soft" color="neutral" />
       <UButton icon="bi:github" variant="soft" color="neutral" />
-    </DuckBox>
-  </DuckBox>
+    </div>
+  </div>
 </template>

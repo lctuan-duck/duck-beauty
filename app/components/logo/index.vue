@@ -12,7 +12,7 @@ withDefaults(
 </script>
 
 <template>
-  <DuckBox v-if="type === 'img'" class="flex items-center gap-1">
+  <div v-if="type === 'img'" class="flex items-center gap-1">
     <DuckImg
       src="/images/logo.png"
       alt="Logo"
@@ -21,7 +21,7 @@ withDefaults(
       @click="navigateTo(to)"
     />
     <DuckText as="span" class="pacifico-regular">Duck</DuckText>
-  </DuckBox>
+  </div>
   <DuckText
     v-else
     as="span"

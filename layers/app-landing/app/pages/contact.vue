@@ -43,19 +43,16 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 </script>
 
 <template>
-  <DuckBox
-    as="main"
-    class="max-w-[1440px] mx-auto px-8 h-full pb-10 flex flex-col gap-16"
-  >
-    <DuckBox
+  <main class="max-w-[1440px] mx-auto px-8 h-full pb-10 flex flex-col gap-16">
+    <div
       class="flex flex-col lg:flex-row justify-between items-center gap-8 py-8"
     >
-      <DuckBox class="flex-1 space-y-10">
+      <div class="flex-1 space-y-10">
         <DuckText as="h2" class="text-3xl font-serif font-semibold">{{
           t("appLanding.page.contact.location.title")
         }}</DuckText>
 
-        <DuckBox>
+        <div>
           <DuckText as="h3" class="text-xl font-semibold"
             >Bà Rịa - Vũng Tàu</DuckText
           >
@@ -63,60 +60,60 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             {{ t("appLanding.page.contact.location.description") }}
           </DuckText>
 
-          <DuckBox class="mt-2 space-y-2">
-            <DuckBox class="flex items-start gap-2">
+          <div class="mt-2 space-y-2">
+            <div class="flex items-start gap-2">
               <UIcon
                 name="i-heroicons-map-pin"
                 class="text-[var(--ui-info)] mt-1"
               />
-              <DuckBox>
+              <div>
                 <DuckText class="font-semibold">
                   {{ t("appLanding.page.contact.location.addressLabel") }}
                 </DuckText>
                 <DuckText class="text-sm">
                   {{ t("appLanding.page.contact.location.address") }}</DuckText
                 >
-              </DuckBox>
-            </DuckBox>
+              </div>
+            </div>
 
-            <DuckBox class="flex items-start gap-2">
+            <div class="flex items-start gap-2">
               <UIcon
                 name="i-heroicons-phone"
                 class="text-[var(--ui-info)] mt-1"
               />
-              <DuckBox>
+              <div>
                 <DuckText class="font-semibold">
                   {{ t("appLanding.page.contact.location.phoneLabel") }}
                 </DuckText>
                 <DuckText class="text-sm">
                   {{ t("appLanding.page.contact.location.phone") }}
                 </DuckText>
-              </DuckBox>
-            </DuckBox>
-            <DuckBox class="flex items-start gap-2">
+              </div>
+            </div>
+            <div class="flex items-start gap-2">
               <UIcon name="lucide:mail" class="text-[var(--ui-info)] mt-1" />
-              <DuckBox>
+              <div>
                 <DuckText class="font-semibold">
                   {{ t("appLanding.page.contact.location.emailLabel") }}
                 </DuckText>
                 <DuckText>hello@flowbase.com</DuckText>
-              </DuckBox>
-            </DuckBox>
-          </DuckBox>
-        </DuckBox>
-      </DuckBox>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Right: Image -->
-      <DuckBox class="flex-1 flex justify-center">
+      <div class="flex-1 flex justify-center">
         <DuckImg
           src="https://mbspilates.vn/wp-content/uploads/2024/07/tiem-nail-ha-noi-1.webp"
           alt="Salon Location"
           class="rounded-b-full border-b-2 w-full max-w-md object-cover"
         />
-      </DuckBox>
-    </DuckBox>
+      </div>
+    </div>
     <!-- form contact -->
-    <DuckBox
+    <div
       class="bg-[var(--ui-primary)]/10 rounded-xl min-h-screen flex flex-col items-center justify-center p-8"
     >
       <DuckText
@@ -128,7 +125,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         {{ t("appLanding.page.contact.form.subtitle") }}
       </DuckText>
 
-      <DuckBox
+      <div
         class="bg-[var(--ui-bg)] p-6 rounded-xl shadow-md w-full max-w-2xl flex flex-col gap-4"
       >
         <UForm
@@ -137,7 +134,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           class="flex flex-col gap-4 items-center"
           @submit="onSubmit"
         >
-          <DuckBox class="flex-1 w-full grid grid-cols-2 grid-rows-3 gap-7">
+          <div class="flex-1 w-full grid grid-cols-2 grid-rows-3 gap-7">
             <UFormField
               :label="t(`appLanding.page.contact.form.name`)"
               name="name"
@@ -198,15 +195,15 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 :rows="9"
               />
             </UFormField>
-          </DuckBox>
+          </div>
 
           <UButton type="submit" size="xl" class="mt-4">{{
             t(`appLanding.page.contact.form.button`)
           }}</UButton>
         </UForm>
-      </DuckBox>
-    </DuckBox>
-  </DuckBox>
+      </div>
+    </div>
+  </main>
   <!-- Footer -->
   <AppLandingMoleculesFooter />
 </template>

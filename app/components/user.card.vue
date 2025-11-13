@@ -18,31 +18,31 @@ withDefaults(
 </script>
 
 <template>
-  <DuckBox v-if="isAnonymous" class="flex items-center gap-3" v-bind="$attrs">
+  <div v-if="isAnonymous" class="flex items-center gap-3" v-bind="$attrs">
     <!-- User Avatar -->
     <UAvatar size="lg" :src="getAvatarUrl()" alt="User Avatar" />
     <!-- content -->
-    <DuckBox v-if="isShowContent">
+    <div v-if="isShowContent">
       <!-- username -->
-      <DuckBox :class="titleClass">
+      <div :class="titleClass">
         <DuckText class="font-medium">{{ getRandomUsername() }}</DuckText>
         <slot name="subtitle"></slot>
-      </DuckBox>
+      </div>
       <slot name="content"></slot>
-    </DuckBox>
-  </DuckBox>
+    </div>
+  </div>
 
-  <DuckBox v-else-if="user" class="flex items-center gap-3" v-bind="$attrs">
+  <div v-else-if="user" class="flex items-center gap-3" v-bind="$attrs">
     <!-- User Avatar -->
     <UAvatar size="lg" :src="getAvatarUrl(user.avatar)" alt="User Avatar" />
     <!-- content -->
-    <DuckBox v-if="isShowContent">
+    <div v-if="isShowContent">
       <!-- username -->
-      <DuckBox :class="titleClass">
+      <div :class="titleClass">
         <DuckText class="font-medium">{{ user.username }}</DuckText>
         <slot name="subtitle"></slot>
-      </DuckBox>
+      </div>
       <slot name="content"></slot>
-    </DuckBox>
-  </DuckBox>
+    </div>
+  </div>
 </template>

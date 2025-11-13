@@ -5,5 +5,5 @@ definePageMeta({
 </script>
 
 <template>
-  <DuckBox class=""> bảng giá </DuckBox>
+  <div class="">bảng giá</div>
 </template>

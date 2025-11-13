@@ -75,41 +75,41 @@ const mockComment: Comment = {
 };
 </script>
 <template>
-  <DuckBox class="w-full py-4">
-    <DuckBox
+  <div class="w-full py-4">
+    <div
       class="w-full max-w-xl m-auto rounded-lg ring-1 ring-[var(--ui-border)]"
     >
-      <DuckBox class="flex flex-col">
+      <div class="flex flex-col">
         <!-- post -->
         <AppConfessionMoleculesPlatformConfessionPostCard
           :item="anonymousConfession"
         />
         <!-- comments -->
-        <DuckBox
+        <div
           class="-mt-1 flex flex-col bg-[var(--ui-bg)] ring-1 ring-[var(--ui-border)] rounded-b-lg overflow-hidden"
         >
-          <DuckBox class="ring-1 ring-[var(--ui-border)]">
+          <div class="ring-1 ring-[var(--ui-border)]">
             <AppConfessionMoleculesPlatformConfessionCommentCard
               :item="mockComment"
             />
-          </DuckBox>
-          <DuckBox class="ring-1 ring-[var(--ui-border)]">
+          </div>
+          <div class="ring-1 ring-[var(--ui-border)]">
             <AppConfessionMoleculesPlatformConfessionCommentCard
               :item="mockComment"
             />
-          </DuckBox>
-          <DuckBox class="ring-1 ring-[var(--ui-border)]">
+          </div>
+          <div class="ring-1 ring-[var(--ui-border)]">
             <AppConfessionMoleculesPlatformConfessionCommentCard
               :item="mockComment"
             />
-          </DuckBox>
-          <DuckBox class="ring-1 ring-[var(--ui-border)]">
+          </div>
+          <div class="ring-1 ring-[var(--ui-border)]">
             <AppConfessionMoleculesPlatformConfessionCommentCard
               :item="mockComment"
             />
-          </DuckBox>
-        </DuckBox>
-      </DuckBox>
-    </DuckBox>
-  </DuckBox>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

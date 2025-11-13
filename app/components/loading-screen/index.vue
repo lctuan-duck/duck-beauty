@@ -19,7 +19,7 @@ const emits = defineEmits<{
 
 <template>
   <Transition name="fade" mode="out-in">
-    <DuckBox
+    <div
       v-if="isLoading"
       class="size-full fixed top-0 left-0 right-0 bottom-0 z-[9999] bg-[var(--ui-bg)] flex items-center justify-center"
     >
@@ -34,6 +34,6 @@ const emits = defineEmits<{
         }"
         @on-complete="() => emits('complete')"
       />
-    </DuckBox>
+    </div>
   </Transition>
 </template>

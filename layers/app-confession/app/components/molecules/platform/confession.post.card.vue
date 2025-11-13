@@ -41,9 +41,9 @@ async function onCopyLink() {
 
 <template>
   <UCard class="w-full p-3 rounded-2xl">
-    <DuckBox class="flex flex-col gap-1">
+    <div class="flex flex-col gap-1">
       <!-- user -->
-      <DuckBox class="flex items-center justify-between">
+      <div class="flex items-center justify-between">
         <DuckUserCard
           :is-anonymous="item?.isAnonymous"
           :user="item?.isAnonymous ? undefined : item.user"
@@ -73,18 +73,18 @@ async function onCopyLink() {
             class="rounded-full"
           />
         </UDropdownMenu>
-      </DuckBox>
+      </div>
       <!-- content -->
-      <DuckBox>
+      <div>
         <DuckEditor :content="item?.content" :editable="false" />
-      </DuckBox>
+      </div>
       <!-- footer (like, reply, re-post) -->
-      <DuckBox class="-ml-3 flex items-center gap-2">
+      <div class="-ml-3 flex items-center gap-2">
         <AppConfessionMoleculesPlatformConfessionActionBarCard />
         <!-- @like="(reaction) => $emit('like', reaction)"
           @reply="$emit('reply')"
           @re-post="$emit('repost')" -->
-      </DuckBox>
-    </DuckBox>
+      </div>
+    </div>
   </UCard>
 </template>

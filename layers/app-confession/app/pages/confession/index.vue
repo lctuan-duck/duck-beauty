@@ -63,16 +63,16 @@ const anonymousConfession: Confession[] = [
 ];
 </script>
 <template>
-  <DuckBox class="w-full py-4">
-    <DuckBox class="w-full max-w-xl m-auto">
+  <div class="w-full py-4">
+    <div class="w-full max-w-xl m-auto">
       <AppConfessionMoleculesPlatformConfessionCreate class="mb-4" />
-      <DuckBox class="flex flex-col gap-4">
+      <div class="flex flex-col gap-4">
         <AppConfessionMoleculesPlatformConfessionPostCard
           v-for="item in anonymousConfession"
           :key="item.id"
           :item="item"
         />
-      </DuckBox>
-    </DuckBox>
-  </DuckBox>
+      </div>
+    </div>
+  </div>
 </template>

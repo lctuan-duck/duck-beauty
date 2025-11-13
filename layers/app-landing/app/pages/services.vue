@@ -4,5 +4,5 @@ definePageMeta({
 });
 </script>
 <template>
-  <DuckBox class=""> dichj vuj </DuckBox>
+  <div class="">dichj vuj</div>
 </template>

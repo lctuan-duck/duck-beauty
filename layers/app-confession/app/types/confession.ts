@@ -19,6 +19,16 @@ interface ConfessionBase {
   isAnonymous: boolean;
   totalViews: number;
   totalTips: number;
+  priceCoin?: number;
+  // TODO: implement this feature
+  reactions: {
+    heart: number;
+    shock: number;
+    sad: number;
+    support: number;
+  };
+  isPurchased?: boolean;
+
   createdAt: Date;
   updatedAt: Date;
 }

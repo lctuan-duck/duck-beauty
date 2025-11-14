@@ -6,3 +6,17 @@
 @theme {
   --color-pink-500: oklch(0.718 0.202 349.761);
 }
+
+:root {
+  /* module confession */
+  --ui-cfs-gradient: linear-gradient(to bottom right, #06b6d4, #3b82f6);
+  --ui-cfs-gradient-hover: linear-gradient(to bottom right, #0891b2, #2563eb);
+}
+
+.bg-cfs-gradient {
+  background: var(--ui-cfs-gradient);
+}
+
+.bg-cfs-gradient:hover {
+  background: var(--ui-cfs-gradient-hover);
+}

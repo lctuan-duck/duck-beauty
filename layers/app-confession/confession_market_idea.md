@@ -161,5 +161,74 @@
 
 ---
 
-> 📄 *File này có thể được chia nhỏ ra backlog và roadmap chi tiết để triển khai MVP trong 1-2 tháng.*
+> 📄 _File này có thể được chia nhỏ ra backlog và roadmap chi tiết để triển khai MVP trong 1-2 tháng._
 
+## 11. ⭐ Mở rộng: Review Công Ty (Company Reviews)
+
+Mục tiêu: mở rộng nền tảng để cho phép người dùng (ẩn danh hoặc công khai) viết review công ty — giúp cộng đồng chia sẻ trải nghiệm làm việc, phỏng vấn, văn hoá công ty. Review có thể được tip, mua quyền xem (nếu author muốn) và sẽ được quản lý/moderate giống confession.
+
+### 11.1. Tính năng chính
+
+- Viết review công ty (ẩn danh hoặc gắn tên).
+- Gắn tag: tuyển dụng, lương, culture, work-life balance, phỏng vấn.
+- Đánh giá theo sao (1-5) + điểm chi tiết (lương, culture, management).
+- Người đọc có thể:
+  - Xem preview, mua quyền xem toàn bộ (nếu review đặt giá).
+  - Tip cho review tốt.
+  - Thả reaction (helpful / not helpful).
+  - Báo cáo vi phạm (spam, libel, PII).
+- Company profile:
+  - Trang chi tiết công ty (logo, mô tả, ngành, địa điểm, tổng đánh giá trung bình).
+  - Hiển thị rating trung bình, số review, trend (mức độ tích cực theo thời gian).
+- Moderation:
+  - AI + reviewer human để kiểm tra nội dung nhạy cảm/PII.
+  - Queue duyệt cho admin/moderator.
+  - Tự động hide khi bị report nhiều.
+- Verification:
+  - Tùy chọn "verified reviewer" (qua email công ty hoặc LinkedIn) — optional.
+- Privacy & Legal:
+  - Chính sách xử lý PII và khiếu nại (takedown).
+  - Hỗ trợ ẩn danh tuyệt đối (no IP or metadata disclosure).
+
+### 11.2. DB Schema mở rộng (gợi ý)
+
+- companies
+  - id, name, slug, logoUrl, industry, headquarters, website, createdAt
+- company_reviews
+  - id, companyId, userId (nullable), title, content, rating (1-5), aspects JSON (salary, culture...), priceCoin, isAnonymous, isApproved, totalTips, totalViews, createdAt
+- review_reactions
+  - id, reviewId, userId, type (helpful/not), createdAt
+- company_stats (cached)
+  - companyId, avgRating, reviewCount, lastUpdated
+
+Ví dụ Prisma models (gợi ý):
+
+```prisma
+model Company {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  logoUrl   String?
+  industry  String?
+  website   String?
+  reviews   CompanyReview[]
+  createdAt DateTime @default(now())
+}
+
+model CompanyReview {
+  id         String   @id @default(cuid())
+  company    Company  @relation(fields: [companyId], references: [id])
+  companyId  String
+  authorId   String?  // nullable for anonymous
+  title      String
+  content    String
+  rating     Int
+  aspects    Json?
+  priceCoin  Int      @default(0)
+  isAnonymous Boolean @default(true)
+  isApproved Boolean  @default(false)
+  totalTips  Int      @default(0)
+  totalViews Int      @default(0)
+  createdAt  DateTime @default(now())
+}
+```

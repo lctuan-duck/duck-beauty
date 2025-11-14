@@ -24,7 +24,9 @@ export default defineAppConfig({
     },
     card: {
       slots: {
-        body: "p-2 sm:p-2",
+        header: "border-none p-3 sm:p-3",
+        body: "border-none p-3 sm:p-3",
+        footer: "p-3 sm:p-3",
       },
     },
     drawer: {

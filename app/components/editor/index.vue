@@ -11,17 +11,22 @@ const props = withDefaults(
     editable?: boolean;
     content?: JSONContent;
     editorClass?: string;
+    clampedHeight?: number;
   }>(),
   {
     editable: true,
     content: undefined,
     editorClass: "",
+    clampedHeight: 0,
   }
 );
 
 const emits = defineEmits<{
   (e: "update:content", content: JSONContent): void;
 }>();
+
+const wrapperRef = useTemplateRef<HTMLElement>("editorWrapper");
+const isClamped = ref(false);
 
 const editor = useEditor({
   content: props.content,
@@ -52,10 +57,29 @@ const editor = useEditor({
   },
 });
 
+function checkClamped() {
+  if (!wrapperRef.value) return;
+  if (!props.clampedHeight || props.clampedHeight <= 0) return;
+
+  const el = wrapperRef.value;
+
+  // đảm bảo khi clamp thì có max-height
+  el.style.maxHeight = props.clampedHeight + "px";
+  el.style.overflow = "hidden";
+
+  nextTick(() => {
+    // Sau nextTick nhưng vẫn quá sớm với TipTap → dùng requestAnimationFrame
+    requestAnimationFrame(() => {
+      isClamped.value = el.scrollHeight > el.clientHeight;
+    });
+  });
+}
+
 watch(
   () => editor.value?.getJSON(),
   (newContent) => {
     emits("update:content", newContent as JSONContent);
+    checkClamped();
   }
 );
 
@@ -116,7 +140,8 @@ const EXTENSION_ITEMS = [
 
 <template>
   <div
-    class="flex flex-col gap-1"
+    ref="editorWrapper"
+    class="flex flex-col gap-1 relative"
     :class="{
       'p-4 ring ring-[var(--ui-border-muted)] rounded-lg': editable,
     }"
@@ -155,5 +180,11 @@ const EXTENSION_ITEMS = [
         </UDropdownMenu>
       </UTooltip>
     </div>
+
+    <!-- Fade-out nếu bị clamp && editable = false -->
+    <div
+      v-if="isClamped && !props.editable"
+      class="pointer-events-none absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-default/70"
+    />
   </div>
 </template>

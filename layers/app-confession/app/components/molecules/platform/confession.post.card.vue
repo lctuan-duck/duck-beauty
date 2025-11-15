@@ -100,6 +100,12 @@ const handleUnlockClick = (e: MouseEvent) => {
     binanceStore.handlePurchaseWithCoins(props.item.priceCoin);
   }
 };
+
+const handleTip = (amount: number) => {
+  if (props.item && amount) {
+    binanceStore.handlePurchaseWithCoins(amount);
+  }
+};
 </script>
 
 <template>
@@ -137,11 +143,7 @@ const handleUnlockClick = (e: MouseEvent) => {
           {{ tag }}
         </UBadge>
 
-        <UBadge
-          v-if="props.item.isAnonymous"
-          variant="outline"
-          class="text-xs border-gray-300"
-        >
+        <UBadge v-if="props.item.isAnonymous" color="neutral" variant="outline">
           👤 Ẩn danh
         </UBadge>
       </div>
@@ -150,21 +152,26 @@ const handleUnlockClick = (e: MouseEvent) => {
     <!-- Body -->
     <div
       class="text-sm text-toned line-clamp-3"
-      :class="{ 'blur-sm select-none': !canView }"
+      :class="{ 'blur-sm': !canView }"
     >
       <template v-if="canView">
-        <DuckEditor :content="props.item?.content" :editable="false" />
+        <DuckEditor
+          :content="props.item?.content"
+          :editable="false"
+          :clamped-height="60"
+        />
       </template>
       <template v-else>
         Nội dung này yêu cầu mở khóa để xem. Click để xem chi tiết và mở khóa...
       </template>
+      <!-- fade-out mask -->
     </div>
 
     <!-- Footer -->
     <template #footer>
-      <div class="flex flex-col gap-3 pt-3 border-t border-purple-50">
+      <div class="flex flex-col gap-3 pt-3 border-t border-default/50">
         <!-- Stats -->
-        <div class="flex items-center gap-4 text-xs text-gray-500 w-full">
+        <div class="flex items-center gap-4 text-xs w-full">
           <UTooltip
             v-for="stat in stats"
             :key="stat.label"
@@ -181,15 +188,19 @@ const handleUnlockClick = (e: MouseEvent) => {
         <!-- Unlock Button -->
         <UButton
           v-if="!canView"
-          class="w-full justify-center"
+          class="w-full justify-center gap-2"
           @click="handleUnlockClick"
         >
-          <UIcon name="solar:lock-outline" class="w-4 h-4 mr-2" />
+          <UIcon name="solar:lock-outline" class="w-4 h-4" />
           Mở khóa với {{ props.item.priceCoin }} coins
         </UButton>
         <AppConfessionMoleculesPlatformConfessionViewDetailDrawer
           :open="isOpenDrawer"
+          :item="props.item"
           @update:open="isOpenDrawer = $event"
+          @on:unlock="handleUnlockClick"
+          @on:reaction="(type: string) => {}"
+          @on:tip="handleTip"
         />
       </div>
     </template>

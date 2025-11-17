@@ -12,7 +12,9 @@ definePageMeta({
 <template>
   <div class="w-full py-4">
     <div class="w-full max-w-5xl m-auto">
-      <AppConfessionMoleculesPlatformConfessionCreate class="mb-4" />
+      <div class="mb-4">
+        <AppConfessionMoleculesPlatformConfessionCreate />
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <AppConfessionMoleculesPlatformConfessionPostCard
           v-for="item in formattedConfessions"

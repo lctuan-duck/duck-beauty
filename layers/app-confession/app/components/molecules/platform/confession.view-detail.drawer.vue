@@ -117,6 +117,7 @@ const handlePreTip = () => {
     :direction="$breakpoints.isMobile ? 'bottom' : 'right'"
     :handle="$breakpoints.isMobile"
     :overlay="$breakpoints.isMobile"
+    :inset="false"
     :ui="{
       header: $breakpoints.isMobile ? '' : 'w-sm',
       body: $breakpoints.isMobile ? '' : 'w-sm',
@@ -126,7 +127,9 @@ const handlePreTip = () => {
 
     <template #header>
       <div class="flex items-center justify-between gap-4">
-        <h2 class="font-semibold">{{ props.item.summary }}</h2>
+        <DuckText as="h2" class="font-semibold">{{
+          props.item.summary
+        }}</DuckText>
         <UButton
           color="neutral"
           variant="ghost"
@@ -163,7 +166,9 @@ const handlePreTip = () => {
           >
             <div class="flex items-center gap-1">
               <UIcon :name="stat.icon" class="w-5 h-5" :class="stat.color" />
-              <span :class="stat.color">{{ stat.value }}</span>
+              <DuckText as="span" :class="stat.color">{{
+                stat.value
+              }}</DuckText>
             </div>
           </UTooltip>
         </div>
@@ -213,7 +218,7 @@ const handlePreTip = () => {
             <DuckEditor :content="props.item?.content" :editable="false" />
           </div>
 
-          <UDivider />
+          <USeparator />
 
           <!-- Reactions -->
           <div class="space-y-3">
@@ -232,7 +237,7 @@ const handlePreTip = () => {
             </div>
           </div>
 
-          <UDivider />
+          <USeparator />
 
           <!-- Tip -->
           <UAlert

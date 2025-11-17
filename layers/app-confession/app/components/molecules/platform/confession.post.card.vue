@@ -118,11 +118,12 @@ const handleTip = (amount: number) => {
     <template #header>
       <div class="flex items-start justify-between mb-2">
         <div class="flex-1">
-          <h3
+          <DuckText
+            as="h3"
             class="text-lg font-semibold leading-snug mb-2 group-hover:text-primary transition-colors"
           >
             {{ props.item.summary }}
-          </h3>
+          </DuckText>
         </div>
 
         <UIcon
@@ -180,7 +181,9 @@ const handleTip = (amount: number) => {
           >
             <div class="flex items-center gap-1">
               <UIcon :name="stat.icon" class="w-5 h-5" :class="stat.color" />
-              <span :class="stat.color">{{ stat.value }}</span>
+              <DuckText as="span" :class="stat.color">{{
+                stat.value
+              }}</DuckText>
             </div>
           </UTooltip>
         </div>

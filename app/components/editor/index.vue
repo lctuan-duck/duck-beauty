@@ -10,23 +10,34 @@ const props = withDefaults(
   defineProps<{
     editable?: boolean;
     content?: JSONContent;
+    placeholder?: string;
     editorClass?: string;
     clampedHeight?: number;
+    isRequired?: boolean;
   }>(),
   {
     editable: true,
     content: undefined,
+    placeholder: "Bạn đang có tâm sự gì ư? …",
     editorClass: "",
     clampedHeight: 0,
+    isRequired: false,
   }
 );
 
 const emits = defineEmits<{
   (e: "update:content", content: JSONContent): void;
+  (e: "update:content-text", contentText: string): void;
+  (e: "blur", payload: { isEmpty: boolean }): void;
 }>();
 
 const wrapperRef = useTemplateRef<HTMLElement>("editorWrapper");
 const isClamped = ref(false);
+const state = reactive({
+  isEditorEmpty: false,
+  isBlurred: false,
+  isFocused: false,
+});
 
 const editor = useEditor({
   content: props.content,
@@ -38,7 +49,7 @@ const editor = useEditor({
       allowBase64: true,
     }),
     Placeholder.configure({
-      placeholder: "Bạn đang có tâm sự gì ư? …",
+      placeholder: props.placeholder,
     }),
     ...(props.editable ? [DragHandle] : []),
   ],
@@ -54,6 +65,22 @@ const editor = useEditor({
       autocapitalize: "off",
       "aria-label": "Main content area, start typing to enter text.",
     },
+  },
+  onBlur({ editor }) {
+    state.isBlurred = true;
+    state.isFocused = false;
+    const text = editor.getText().trim();
+    const isEmpty = text.length === 0;
+
+    if (props.isRequired && props.editable) {
+      state.isEditorEmpty = isEmpty;
+    }
+
+    emits("blur", { isEmpty });
+  },
+  onFocus() {
+    state.isFocused = true;
+    state.isBlurred = false;
   },
 });
 
@@ -80,6 +107,20 @@ watch(
   (newContent) => {
     emits("update:content", newContent as JSONContent);
     checkClamped();
+  }
+);
+
+watch(
+  () => editor.value?.getText().trim(),
+  (value) => {
+    if (value === undefined) return;
+    if (state.isFocused) {
+      state.isEditorEmpty = value.length === 0;
+      emits("update:content-text", value || "");
+    }
+    if (!state.isBlurred) return;
+    state.isEditorEmpty = value.length === 0;
+    emits("update:content-text", value || "");
   }
 );
 
@@ -144,6 +185,8 @@ const EXTENSION_ITEMS = [
     class="flex flex-col gap-1 relative"
     :class="{
       'p-4 ring ring-[var(--ui-border-muted)] rounded-lg': editable,
+      'ring-[var(--ui-error)]': state.isEditorEmpty,
+      'ring-2': state.isEditorEmpty && state.isFocused,
     }"
   >
     <!-- editor content -->

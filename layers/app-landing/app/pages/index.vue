@@ -27,7 +27,7 @@ onMounted(() => {
         <DuckText as="h1" class="text-4xl md:text-5xl font-bold leading-tight">
           {{ t("appLanding.page.index.hero.title") }}
         </DuckText>
-        <DuckText class="text-[var(--ui-text-muted)]">
+        <DuckText class="text-muted">
           {{ t("appLanding.page.index.hero.subtitle") }}
         </DuckText>
         <div
@@ -38,7 +38,7 @@ onMounted(() => {
             <DuckText class="font-semibold">
               {{ t("appLanding.page.index.hero.hotlineLabel") }}
             </DuckText>
-            <DuckText class="text-sm text-[var(--ui-text-muted)]">
+            <DuckText class="text-sm text-muted">
               {{ t("appLanding.page.index.hero.hotlineSub") }}
             </DuckText>
           </div>
@@ -85,7 +85,7 @@ onMounted(() => {
         <DuckText as="h3" class="font-semibold text-lg">
           {{ t("appLanding.page.index.features.support.title") }}
         </DuckText>
-        <DuckText class="text-sm text-[var(--ui-text-muted)]">
+        <DuckText class="text-sm text-muted">
           {{ t("appLanding.page.index.features.support.desc") }}
         </DuckText>
       </div>
@@ -111,7 +111,7 @@ onMounted(() => {
         <DuckText as="h3" class="font-semibold text-lg">
           {{ t("appLanding.page.index.features.experts.title") }}
         </DuckText>
-        <DuckText class="text-sm text-[var(--ui-text-muted)]">
+        <DuckText class="text-sm text-muted">
           {{ t("appLanding.page.index.features.experts.desc") }}
         </DuckText>
       </div>
@@ -137,7 +137,7 @@ onMounted(() => {
         <DuckText as="h3" class="font-semibold text-lg">
           {{ t("appLanding.page.index.features.team.title") }}
         </DuckText>
-        <DuckText class="text-sm text-[var(--ui-text-muted)]">
+        <DuckText class="text-sm text-muted">
           {{ t("appLanding.page.index.features.team.desc") }}
         </DuckText>
       </div>

@@ -218,7 +218,7 @@ function getErrorMessage() {
 
       <!-- Footer -->
       <div class="flex items-center gap-1 justify-center">
-        <DuckText class="text-sm text-[var(--ui-text-muted)]">
+        <DuckText class="text-sm text-muted">
           {{ t("appAuth.backToPage") }}
         </DuckText>
         <UButton

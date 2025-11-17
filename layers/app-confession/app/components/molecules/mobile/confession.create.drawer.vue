@@ -1,47 +1,17 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from "@nuxt/ui";
-import type { JSONContent } from "@tiptap/vue-3";
+import type { ModalAndDrawerPropsCreateCfs } from "#app-confession/app/components/molecules/platform/confession.create.vue";
 
-const props = withDefaults(
-  defineProps<{
-    configs?: {
-      title?: string;
-      // close config
-      cancelLabel?: string;
-      cancelIcon?: string;
-      // open config
-      openLabel?: string;
-      openIcon?: string;
-      // confirm config
-      confirmLabel?: string;
-      confirmIcon?: string;
-    };
-  }>(),
-  {
-    configs: () => ({}),
-  }
-);
-
-const defaultConfigs = {
-  title: "Tạo confession",
-  // close config
-  cancelLabel: "Hủy",
-  cancelIcon: undefined,
-  // open config
-  openPlaceholder: "Bạn muốn nói gì?",
-  openLabel: "Tạo confession",
-  openIcon: undefined,
-  // confirm config
-  confirmLabel: "Đăng",
-};
+const props = defineProps<ModalAndDrawerPropsCreateCfs>();
 
 const emits = defineEmits<{
-  (e: "on:confirm", content: JSONContent | null): void;
+  (e: "on:confirm"): void;
   (e: "on:change-anonymous", value: boolean): void;
 }>();
 const { user } = useAuth();
-const content = ref<JSONContent | null>(null);
+
 const isOpen = defineModel<boolean>("open", { default: false });
+
 const MENU_ACTIONS = ref<DropdownMenuItem[][]>([
   [
     {
@@ -51,10 +21,8 @@ const MENU_ACTIONS = ref<DropdownMenuItem[][]>([
   ],
 ]);
 
-const mergedConfigs = computed(() => ({ ...defaultConfigs, ...props.configs }));
-
 function onConfirm() {
-  emits("on:confirm", content.value);
+  emits("on:confirm");
   isOpen.value = false;
 }
 
@@ -64,45 +32,41 @@ function onChangeAnonymous(value: boolean) {
 </script>
 
 <template>
-  <UDrawer
-    v-model:open="isOpen"
-    :dismissible="false"
-    :ui="{ content: 'rounded-2xl p-2 h-full' }"
-  >
+  <UDrawer v-model:open="isOpen" :ui="{ content: 'p-2 h-full' }">
     <slot>
-      <UCard class="rounded-2xl">
+      <UCard class="rounded-2xl cursor-pointer">
         <div class="flex items-center gap-2 p-3 justify-between">
           <DuckUserCard v-if="user" :user="user" :is-show-content="false" />
-          <DuckText class="flex-1 font-medium text-[var(--ui-text-muted)]">
-            {{ mergedConfigs.openPlaceholder }}
+          <DuckText class="flex-1 font-medium text-muted">
+            {{ props.configs?.openPlaceholder }}
           </DuckText>
           <UButton
-            :icon="mergedConfigs.openIcon"
+            :icon="props.configs?.openIcon"
             variant="soft"
-            :label="mergedConfigs.openLabel"
+            :label="props.configs?.openLabel"
           />
         </div>
       </UCard>
     </slot>
 
     <template #content>
-      <div class="h-full flex flex-col">
+      <div class="h-[calc(100%-14px)] flex flex-col relative">
         <!-- header -->
         <slot name="header">
           <div class="grid grid-cols-7 grid-rows-1 p-2">
             <!-- cancel button -->
             <div class="col-span-2 flex items-center justify-start">
               <UButton
-                :icon="mergedConfigs.cancelIcon"
+                :icon="props.configs?.cancelIcon"
                 color="neutral"
-                :label="mergedConfigs.cancelLabel"
+                :label="props.configs?.cancelLabel"
                 variant="ghost"
                 @click="isOpen = false"
               />
             </div>
             <!-- title -->
             <DuckText class="col-span-3 text-lg font-medium text-center">
-              {{ mergedConfigs.title }}
+              {{ props.configs?.title }}
             </DuckText>
             <!-- more action -->
             <div class="col-span-2 flex items-center justify-end">
@@ -129,15 +93,13 @@ function onChangeAnonymous(value: boolean) {
         </slot>
 
         <!-- body -->
-        <div class="flex-1 p-3">
-          <DuckEditor
-            class="h-full"
-            editor-class="!max-h-[60vh]"
-            @update:content="content = $event"
-          />
+        <div class="p-3 flex-1 overflow-y-auto">
+          <slot name="body"></slot>
         </div>
         <!-- footer -->
-        <div class="flex items-center justify-between p-2">
+        <div
+          class="flex-shrink-0 flex items-center justify-between p-2 pt-4 shadow-inner"
+        >
           <USwitch
             unchecked-icon="i-lucide-x"
             checked-icon="i-lucide-check"
@@ -146,9 +108,9 @@ function onChangeAnonymous(value: boolean) {
             @update:model-value="onChangeAnonymous($event)"
           />
           <UButton
-            :icon="mergedConfigs.confirmIcon"
+            :icon="props.configs?.confirmIcon"
             variant="soft"
-            :label="mergedConfigs.confirmLabel"
+            :label="props.configs?.confirmLabel"
             @click="onConfirm"
           />
         </div>

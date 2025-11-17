@@ -9,7 +9,7 @@ const { t } = useI18n();
         <div class="flex items-center space-x-2">
           <DuckLogo />
         </div>
-        <DuckText class="text-[var(--ui-text-muted)]">
+        <DuckText class="text-muted">
           {{ t("appLanding.page.index.footer.about.desc") }}
         </DuckText>
         <div class="flex space-x-3">
@@ -24,16 +24,16 @@ const { t } = useI18n();
         <DuckText class="font-semibold mb-4">
           {{ t("appLanding.page.index.footer.quickLinks.title") }}
         </DuckText>
-        <DuckText class="text-[var(--ui-text-muted)]">
+        <DuckText class="text-muted">
           {{ t("appLanding.page.index.footer.quickLinks.home") }}
         </DuckText>
-        <DuckText class="text-[var(--ui-text-muted)]">
+        <DuckText class="text-muted">
           {{ t("appLanding.page.index.footer.quickLinks.services") }}
         </DuckText>
-        <DuckText class="text-[var(--ui-text-muted)]">
+        <DuckText class="text-muted">
           {{ t("appLanding.page.index.footer.quickLinks.careers") }}
         </DuckText>
-        <DuckText class="text-[var(--ui-text-muted)]">
+        <DuckText class="text-muted">
           {{ t("appLanding.page.index.footer.quickLinks.pricing") }}
         </DuckText>
       </div>
@@ -42,16 +42,16 @@ const { t } = useI18n();
         <DuckText class="font-semibold mb-4">
           {{ t("appLanding.page.index.footer.services.title") }}
         </DuckText>
-        <DuckText class="text-[var(--ui-text-muted)]">
+        <DuckText class="text-muted">
           {{ t("appLanding.page.index.footer.services.nails") }}
         </DuckText>
-        <DuckText class="text-[var(--ui-text-muted)]">
+        <DuckText class="text-muted">
           {{ t("appLanding.page.index.footer.services.spa") }}
         </DuckText>
-        <DuckText class="text-[var(--ui-text-muted)]">
+        <DuckText class="text-muted">
           {{ t("appLanding.page.index.footer.services.makeup") }}
         </DuckText>
-        <DuckText class="text-[var(--ui-text-muted)]">
+        <DuckText class="text-muted">
           {{ t("appLanding.page.index.footer.services.skincare") }}
         </DuckText>
       </div>

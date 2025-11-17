@@ -121,7 +121,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       >
         {{ t("appLanding.page.contact.form.title") }}
       </DuckText>
-      <DuckText class="text-center text-[var(--ui-text-muted)] mb-8">
+      <DuckText class="text-center text-muted mb-8">
         {{ t("appLanding.page.contact.form.subtitle") }}
       </DuckText>
 

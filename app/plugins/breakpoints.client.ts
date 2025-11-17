@@ -13,7 +13,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     watchEffect(() => {
       breakpointsState.isMobile = breakpoints.smaller("sm").value;
       breakpointsState.isTablet = breakpoints.between("sm", "lg").value;
-      breakpointsState.isDesktop = breakpoints.greater("lg").value;
+      breakpointsState.isDesktop = breakpoints.greaterOrEqual("lg").value;
     });
   }
 

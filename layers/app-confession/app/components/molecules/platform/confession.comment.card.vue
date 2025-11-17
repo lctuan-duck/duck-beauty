@@ -16,7 +16,7 @@ const props = defineProps<{
       class="items-start"
     >
       <template #subtitle>
-        <DuckText class="text-sm text-[var(--ui-text-muted)]">
+        <DuckText class="text-sm text-muted">
           {{ useTimeAgo(item?.createdAt) }}
         </DuckText>
       </template>

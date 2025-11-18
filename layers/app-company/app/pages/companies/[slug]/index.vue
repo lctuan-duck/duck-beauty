@@ -33,8 +33,8 @@ const ratingBreakdown = computed(() => {
       value: company.value?.ratings.management,
     },
     {
-      label: "Work-life",
-      value: company.value?.ratings.workLifeBalance,
+      label: "Sự nghiệp",
+      value: company.value?.ratings.careerGrowth,
     },
   ];
 });
@@ -74,11 +74,13 @@ definePageMeta({
         class="border border-[var(--ui-primary)]/20 rounded-xl overflow-hidden"
       >
         <!-- Gradient Header -->
-        <div class="bg-cfs-gradient px-6 py-8 text-white rounded-t-xl">
+        <div
+          class="bg-cfs-gradient px-6 py-8 max-sm:px-4 max-sm:py-6 text-white rounded-t-xl"
+        >
           <div class="flex items-start gap-6">
             <div
               v-if="company?.logo"
-              class="text-6xl bg-white/20 backdrop-blur rounded-2xl w-24 h-24 flex items-center justify-center"
+              class="text-6xl bg-white/20 backdrop-blur rounded-2xl w-24 h-24 flex items-center justify-center max-sm:hidden"
             >
               {{ company.logo }}
             </div>
@@ -86,25 +88,28 @@ definePageMeta({
             <div class="flex-1">
               <div class="flex items-start justify-between mb-3">
                 <div>
-                  <DuckText as="h1" class="text-4xl mb-2">{{
-                    company?.name
-                  }}</DuckText>
+                  <DuckText as="h1" class="text-4xl mb-2">
+                    {{ company?.name }}
+                  </DuckText>
 
                   <div class="flex items-center gap-3">
-                    <UBadge>
+                    <UBadge :size="$breakpoints.isMobile ? 'sm' : 'md'">
                       <UIcon name="lucide:building-2" class="w-3 h-3 mr-1" />
                       {{ company.industry }}
                     </UBadge>
 
-                    <UBadge>
+                    <UBadge :size="$breakpoints.isMobile ? 'sm' : 'md'">
                       <UIcon name="i-lucide-map-pin" class="w-3 h-3 mr-1" />
                       {{ company.location }}
                     </UBadge>
 
-                    <UBadge v-if="getTrendingIcon.name">
+                    <UBadge
+                      v-if="getTrendingIcon.name"
+                      :size="$breakpoints.isMobile ? 'sm' : 'md'"
+                    >
                       <UIcon
                         :name="getTrendingIcon.name"
-                        class="w-4 h-4"
+                        class="size-4 max-sm:size-3"
                         :class="getTrendingIcon.class"
                       />
                     </UBadge>
@@ -120,12 +125,14 @@ definePageMeta({
         </div>
 
         <!-- Body -->
-        <div class="p-6">
+        <div class="p-6 max-sm:p-4">
           <!-- Stats -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-3 sm:gap-6 max-sm:gap-y-4 mb-6"
+          >
             <!-- Rating Box -->
             <UCard
-              class="bg-[var(--ui-primary)]/5 rounded-xl p-2 border border-[var(--ui-primary)]/40"
+              class="col-span-1 bg-[var(--ui-primary)]/5 rounded-xl p-2 border border-[var(--ui-primary)]/40"
             >
               <div class="mb-2 font-semibold">Đánh giá chung</div>
 
@@ -162,17 +169,17 @@ definePageMeta({
             </UCard>
 
             <!-- Rating Detail -->
-            <UCard class="md:col-span-2 rounded-xl p-2">
-              <div class="mb-4 font-semibold">Chi tiết đánh giá</div>
+            <UCard class="col-span-2 rounded-xl p-2">
+              <div class="mb-3 font-semibold">Đánh giá chi tiết</div>
 
               <!-- Rating Breakdown -->
-              <div class="grid sm:grid-cols-2 gap-y-3 gap-x-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6">
                 <div
                   v-for="item in ratingBreakdown"
                   :key="item.label"
                   class="flex items-center gap-2 text-sm"
                 >
-                  <DuckText as="span" class="w-24">
+                  <DuckText as="span" class="w-32">
                     {{ item.label }}
                   </DuckText>
                   <UProgress :model-value="item.value" :max="5" />
@@ -192,33 +199,26 @@ definePageMeta({
             <UButton
               size="lg"
               icon="lucide:edit"
-              label="Viết review cho công ty này"
+              label="Viết review"
+              class="max-sm:flex-1 justify-center"
             />
             <UButton
               size="lg"
               icon="lucide:users"
               variant="outline"
-              label="Theo dõi công ty"
+              label="Theo dõi"
+              class="max-sm:flex-1 justify-center"
             />
           </div>
         </div>
       </div>
 
       <!-- Reviews -->
-      <DuckText as="h2" class="text-2xl font-semibold"
-        >Reviews từ nhân viên</DuckText
-      >
-    </main>
+      <DuckText as="h2" class="text-2xl font-semibold">
+        Reviews từ nhân viên
+      </DuckText>
 
-    <!-- Review Modal -->
-    <!-- <ReviewDetailModal
-      v-if="selectedReview"
-      :review="selectedReview"
-      :is-purchased="purchasedReviews.has(selectedReview.id)"
-      :is-premium="props.isPremium"
-      @unlock="handleUnlock"
-      @tip="handleTip"
-      @close="selectedReview = null"
-    /> -->
+      <AppCompanyMoleculesPlatformCompanyReviewList :company-id="company.id" />
+    </main>
   </div>
 </template>

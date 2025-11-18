@@ -1,23 +1,22 @@
+import type { JSONContent } from "@tiptap/core";
+
 export interface CompanyReview {
   id: string;
   companyId: string;
   userId: string;
-  content: string;
+  content: JSONContent;
   summary: string;
   rating: number;
   ratings: {
     salary: number;
     culture: number;
     management: number;
-    workLifeBalance: number;
     careerGrowth: number;
   };
   position: string;
   employmentStatus: "current" | "former" | "candidate";
   isAnonymous: boolean;
   isVerified: boolean;
-  priceCoin: number;
-  totalTips: number;
   helpfulCount: number;
   notHelpfulCount: number;
   tags: string[];
@@ -28,7 +27,7 @@ export interface CompanyReview {
 export interface Company {
   id: string;
   name: string;
-  slug:string
+  slug: string;
   logo: string;
   industry: string;
   location: string;
@@ -39,7 +38,6 @@ export interface Company {
     salary: number;
     culture: number;
     management: number;
-    workLifeBalance: number;
     careerGrowth: number;
   };
   trending: "up" | "down" | "stable";

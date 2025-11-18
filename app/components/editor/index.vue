@@ -231,7 +231,7 @@ const EXTENSION_ITEMS = [
     <!-- Fade-out nếu bị clamp && editable = false -->
     <div
       v-if="isClamped && !props.editable"
-      class="pointer-events-none absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-default/70"
+      class="pointer-events-none absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-default/80"
     />
   </div>
 </template>

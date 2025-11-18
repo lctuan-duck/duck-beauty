@@ -1,11 +1,11 @@
 import type { JSONContent } from "@tiptap/vue-3";
-import type { Company } from "../types";
+import type { Company, CompanyReview } from "../types";
 
 export const mockCompanies: Company[] = [
   {
     id: "c1",
     name: "TechViet Solutions",
-    slug: 'teachviet-sulitions',
+    slug: "teachviet-sulitions",
     logo: "🏢",
     industry: "Công nghệ phần mềm",
     location: "Hà Nội",
@@ -17,7 +17,6 @@ export const mockCompanies: Company[] = [
       salary: 4.2,
       culture: 3.5,
       management: 3.2,
-      workLifeBalance: 3.9,
       careerGrowth: 4.0,
     },
     trending: "up",
@@ -25,7 +24,7 @@ export const mockCompanies: Company[] = [
   {
     id: "c2",
     name: "StartupX Vietnam",
-    slug: 'startupx-bietnam',
+    slug: "startupx-bietnam",
     logo: "🚀",
     industry: "E-commerce",
     location: "TP. Hồ Chí Minh",
@@ -36,7 +35,6 @@ export const mockCompanies: Company[] = [
       salary: 4.5,
       culture: 2.8,
       management: 2.5,
-      workLifeBalance: 2.3,
       careerGrowth: 3.8,
     },
     trending: "down",
@@ -55,7 +53,6 @@ export const mockCompanies: Company[] = [
       salary: 4.0,
       culture: 4.3,
       management: 4.2,
-      workLifeBalance: 4.0,
       careerGrowth: 3.9,
     },
     trending: "stable",
@@ -74,7 +71,6 @@ export const mockCompanies: Company[] = [
       salary: 3.7,
       culture: 4.2,
       management: 3.8,
-      workLifeBalance: 3.5,
       careerGrowth: 4.1,
     },
     trending: "up",
@@ -86,37 +82,50 @@ export const mockCompanyReviews: CompanyReview[] = [
     id: "r1",
     companyId: "c1",
     userId: "user10",
-    content: `Tôi đã làm việc tại TechViet Solutions được 3 năm ở vị trí Senior Developer. Đây là trải nghiệm của tôi:
-
-**Ưu điểm:**
-- Lương thưởng rất OK, cao hơn mặt bằng chung 20-30%
-- Được làm việc với công nghệ mới: React, Node.js, AWS
-- Team lead và đồng nghiệp support nhiệt tình
-- Có training và budget cho self-learning
-- Cơ hội thăng tiến rõ ràng
-
-**Nhược điểm:**
-- Thỉnh thoảng phải OT khi deadline gấp (nhưng có tính công)
-- Một số dự án outsourcing khá nhàm chán
-- Office ở xa trung tâm, đi lại hơi bất tiện
-- Meeting hơi nhiều, đôi khi không hiệu quả
-
-**Kết luận:** Đây là một công ty tốt để phát triển career, đặc biệt với junior/mid-level developer. Môi trường chuyên nghiệp, học hỏi được nhiều. Tôi recommend!`,
+    content: {
+      type: "doc",
+      content: [
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Tôi đã yêu anh ấy được 3 năm, nhưng anh ấy không hề biết. Mỗi ngày đến công ty, tôi chỉ mong được nhìn thấy anh ấy dù chỉ một lần. Tôi nhớ từng chi tiết nhỏ nhất về anh - cách anh cười, cách anh nhíu mày khi tập trung, cách anh uống cà phê vào mỗi buổi sáng.",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Hôm qua, tôi vô tình nghe được anh nói chuyện với đồng nghiệp. Anh đã đính hôn. Tim tôi như vỡ tan thành nghìn mảnh. Tôi cố gắng giữ nụ cười trên môi, nhưng nước mắt cứ tràn ra không ngừng khi về đến nhà.",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Tôi biết mình nên buông bỏ, nhưng làm sao có thể quên được một người mà bạn đã yêu trong suốt 1095 ngày? Tôi không dám nói ra, vì sợ mất đi cả tình bạn. Giờ đây, tôi chỉ có thể chúc anh hạnh phúc, và âm thầm yêu anh trong im lặng...",
+            },
+          ],
+        },
+      ],
+    },
     summary: "Môi trường tốt để phát triển, lương cao nhưng đôi khi phải OT",
     rating: 4,
     ratings: {
       salary: 4.5,
       culture: 4.0,
       management: 3.5,
-      workLifeBalance: 4.0,
       careerGrowth: 4.5,
     },
     position: "Senior Developer",
     employmentStatus: "current",
     isAnonymous: false,
     isVerified: true,
-    priceCoin: 3,
-    totalTips: 45,
     helpfulCount: 89,
     notHelpfulCount: 5,
     tags: ["Developer", "Outsourcing", "Work-life balance"],
@@ -126,27 +135,38 @@ export const mockCompanyReviews: CompanyReview[] = [
     id: "r2",
     companyId: "c2",
     userId: "user11",
-    content: `WARNING: Đừng apply vào công ty này nếu bạn coi trọng mental health!
-
-Tôi làm ở StartupX được 8 tháng và đã quyết định resign. Đây là những gì tôi trải qua:
-
-**Văn hóa toxic:**
-- CEO và CTO thường xuyên chửi bới nhân viên trong meeting
-- Không có work-life balance: làm tới 10-11PM là chuyện bình thường
-- Weekend vẫn phải online, không reply là bị "nhắc nhở"
-- Thường xuyên thay đổi requirement đột ngột, blame team khi không kịp
-
-**Lương cao nhưng không xứng đáng:**
-- Lương 30-40 triệu nhưng làm việc như 2-3 người
-- Không có tăng lương định kỳ, chỉ có "lời hứa suông"
-- Benefit gần như không có, bảo hiểm xã hội đóng theo mức thấp nhất
-
-**Turnover rate cực cao:**
-- Trong 8 tháng tôi ở đó, đã có 15 người resign
-- HR liên tục tuyển người mới để lấp chỗ trống
-- Không có training, onboarding cẩu thả
-
-Tôi đã bị stress, mất ngủ, và sức khỏe giảm sút nghiêm trọng. Hiện tại đang điều trị trầm cảm. Please, đừng mắc sai lầm như tôi!`,
+    content: {
+      type: "doc",
+      content: [
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Tôi đã yêu anh ấy được 3 năm, nhưng anh ấy không hề biết. Mỗi ngày đến công ty, tôi chỉ mong được nhìn thấy anh ấy dù chỉ một lần. Tôi nhớ từng chi tiết nhỏ nhất về anh - cách anh cười, cách anh nhíu mày khi tập trung, cách anh uống cà phê vào mỗi buổi sáng.",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Hôm qua, tôi vô tình nghe được anh nói chuyện với đồng nghiệp. Anh đã đính hôn. Tim tôi như vỡ tan thành nghìn mảnh. Tôi cố gắng giữ nụ cười trên môi, nhưng nước mắt cứ tràn ra không ngừng khi về đến nhà.",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Tôi biết mình nên buông bỏ, nhưng làm sao có thể quên được một người mà bạn đã yêu trong suốt 1095 ngày? Tôi không dám nói ra, vì sợ mất đi cả tình bạn. Giờ đây, tôi chỉ có thể chúc anh hạnh phúc, và âm thầm yêu anh trong im lặng...",
+            },
+          ],
+        },
+      ],
+    },
     summary:
       "Toxic workplace nghiêm trọng! CEO toxic, OT liên tục, nhiều người resign vì stress",
     rating: 1,
@@ -154,15 +174,12 @@ Tôi đã bị stress, mất ngủ, và sức khỏe giảm sút nghiêm trọng
       salary: 4.0,
       culture: 1.0,
       management: 1.0,
-      workLifeBalance: 1.0,
       careerGrowth: 2.0,
     },
     position: "Product Manager",
     employmentStatus: "former",
     isAnonymous: true,
     isVerified: false,
-    priceCoin: 5,
-    totalTips: 234,
     helpfulCount: 456,
     notHelpfulCount: 12,
     tags: ["Toxic", "CEO", "Stress", "Resign"],
@@ -172,7 +189,38 @@ Tôi đã bị stress, mất ngủ, và sức khỏe giảm sút nghiêm trọng
     id: "r3",
     companyId: "c3",
     userId: "user12",
-    content: "Review chi tiết về VinaTech Global...",
+    content: {
+      type: "doc",
+      content: [
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Tôi đã yêu anh ấy được 3 năm, nhưng anh ấy không hề biết. Mỗi ngày đến công ty, tôi chỉ mong được nhìn thấy anh ấy dù chỉ một lần. Tôi nhớ từng chi tiết nhỏ nhất về anh - cách anh cười, cách anh nhíu mày khi tập trung, cách anh uống cà phê vào mỗi buổi sáng.",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Hôm qua, tôi vô tình nghe được anh nói chuyện với đồng nghiệp. Anh đã đính hôn. Tim tôi như vỡ tan thành nghìn mảnh. Tôi cố gắng giữ nụ cười trên môi, nhưng nước mắt cứ tràn ra không ngừng khi về đến nhà.",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Tôi biết mình nên buông bỏ, nhưng làm sao có thể quên được một người mà bạn đã yêu trong suốt 1095 ngày? Tôi không dám nói ra, vì sợ mất đi cả tình bạn. Giờ đây, tôi chỉ có thể chúc anh hạnh phúc, và âm thầm yêu anh trong im lặng...",
+            },
+          ],
+        },
+      ],
+    },
     summary:
       "Công ty tốt cho developer, văn hóa tích cực, work-life balance ổn",
     rating: 4,
@@ -180,15 +228,12 @@ Tôi đã bị stress, mất ngủ, và sức khỏe giảm sút nghiêm trọng
       salary: 4.0,
       culture: 4.5,
       management: 4.0,
-      workLifeBalance: 4.5,
       careerGrowth: 4.0,
     },
     position: "Full Stack Developer",
     employmentStatus: "current",
     isAnonymous: false,
     isVerified: true,
-    priceCoin: 2,
-    totalTips: 23,
     helpfulCount: 67,
     notHelpfulCount: 3,
     tags: ["Developer", "Work-life balance", "Outsourcing"],

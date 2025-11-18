@@ -31,8 +31,8 @@ const ratingBreakdown = computed(() => {
       value: props.company.ratings.management,
     },
     {
-      label: "Work-life",
-      value: props.company.ratings.workLifeBalance,
+      label: "Sự nghiệp",
+      value: props.company.ratings.careerGrowth,
     },
   ];
 });
@@ -129,7 +129,7 @@ const getRatingColor = (rating: number) => {
         :key="item.label"
         class="flex items-center gap-2 text-sm"
       >
-        <DuckText as="span" class="w-24 text-muted">{{ item.label }}</DuckText>
+        <DuckText as="span" class="w-28 text-muted">{{ item.label }}</DuckText>
         <UProgress :model-value="item.value" :max="5" />
         <DuckText as="span" class="w-8 text-right text-muted">
           {{ item.value.toFixed(1) }}

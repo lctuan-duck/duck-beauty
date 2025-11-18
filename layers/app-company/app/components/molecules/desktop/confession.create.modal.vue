@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from "@nuxt/ui";
-import type { ModalAndDrawerPropsCreateCfs } from "#app-confession/app/components/molecules/platform/confession.create.vue";
+import type { ModalAndDrawerPropsCreateCfs } from "../platform/company.review.create.vue";
 
 const props = defineProps<ModalAndDrawerPropsCreateCfs>();
 
@@ -8,6 +8,7 @@ const emits = defineEmits<{
   (e: "on:confirm"): void;
   (e: "on:change-anonymous", value: boolean): void;
 }>();
+
 const { user } = useAuth();
 
 const isOpen = defineModel<boolean>("open", { default: false });
@@ -31,7 +32,12 @@ function onChangeAnonymous(value: boolean) {
 </script>
 
 <template>
-  <UDrawer v-model:open="isOpen" :ui="{ content: 'p-2 h-full' }">
+  <UModal
+    v-model:open="isOpen"
+    :ui="{ content: 'rounded-2xl p-2' }"
+    :close-on-escape="true"
+    :dismissible="false"
+  >
     <slot>
       <UCard class="rounded-2xl cursor-pointer">
         <div class="flex items-center gap-2 p-3 justify-between">
@@ -49,7 +55,7 @@ function onChangeAnonymous(value: boolean) {
     </slot>
 
     <template #content>
-      <div class="h-[calc(100%-14px)] flex flex-col relative">
+      <div>
         <!-- header -->
         <slot name="header">
           <div class="grid grid-cols-7 grid-rows-1 p-2">
@@ -64,9 +70,11 @@ function onChangeAnonymous(value: boolean) {
               />
             </div>
             <!-- title -->
-            <DuckText class="col-span-3 text-lg font-medium text-center">
-              {{ props.configs?.title }}
-            </DuckText>
+            <div class="col-span-3 flex items-center justify-center gap-2">
+              <DuckText class="text-lg font-medium text-center">
+                {{ props.configs?.title }}
+              </DuckText>
+            </div>
             <!-- more action -->
             <div class="col-span-2 flex items-center justify-end">
               <UDropdownMenu
@@ -92,13 +100,11 @@ function onChangeAnonymous(value: boolean) {
         </slot>
 
         <!-- body -->
-        <div class="p-3 flex-1 overflow-y-auto">
+        <div class="p-3 flex-1 overflow-y-auto max-h-[70vh]">
           <slot name="body"></slot>
         </div>
         <!-- footer -->
-        <div
-          class="flex-shrink-0 flex items-center justify-between p-2 pt-4 shadow-inner"
-        >
+        <div class="flex items-center justify-between p-2 pt-4 shadow-inner">
           <USwitch
             unchecked-icon="i-lucide-x"
             checked-icon="i-lucide-check"
@@ -115,5 +121,5 @@ function onChangeAnonymous(value: boolean) {
         </div>
       </div>
     </template>
-  </UDrawer>
+  </UModal>
 </template>

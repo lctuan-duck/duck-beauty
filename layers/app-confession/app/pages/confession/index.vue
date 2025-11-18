@@ -11,7 +11,7 @@ definePageMeta({
 </script>
 <template>
   <div class="w-full py-4">
-    <div class="w-full max-w-5xl m-auto">
+    <div class="w-full max-w-6xl m-auto">
       <div class="mb-4">
         <AppConfessionMoleculesPlatformConfessionCreate />
       </div>

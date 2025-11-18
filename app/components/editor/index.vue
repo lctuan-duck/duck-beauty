@@ -124,6 +124,10 @@ watch(
   }
 );
 
+defineExpose({
+  editor,
+});
+
 const EXTENSION_ITEMS = [
   {
     label: "Bold",

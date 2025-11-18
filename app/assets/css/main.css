@@ -17,6 +17,6 @@
   background: var(--ui-cfs-gradient);
 }
 
-.bg-cfs-gradient:hover {
+/* .bg-cfs-gradient:hover {
   background: var(--ui-cfs-gradient-hover);
-}
+} */

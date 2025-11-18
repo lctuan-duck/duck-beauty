@@ -24,7 +24,6 @@ const MENU_ACTIONS = ref<DropdownMenuItem[][]>([
 
 function onConfirm() {
   emits("on:confirm");
-  isOpen.value = false;
 }
 
 function onChangeAnonymous(value: boolean) {

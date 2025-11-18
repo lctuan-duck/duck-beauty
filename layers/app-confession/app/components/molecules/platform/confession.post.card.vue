@@ -197,7 +197,7 @@ const handleTip = (amount: number) => {
           <UIcon name="solar:lock-outline" class="w-4 h-4" />
           Mở khóa với {{ props.item.priceCoin }} coins
         </UButton>
-        <AppConfessionMoleculesPlatformConfessionViewDetailDrawer
+        <AppConfessionOrganismsPlatformConfessionViewDetailDrawer
           :open="isOpenDrawer"
           :item="props.item"
           @update:open="isOpenDrawer = $event"

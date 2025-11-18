@@ -154,7 +154,7 @@ const handleOpenDetail = () => {
       </div>
     </div>
   </UCard>
-  <AppCompanyMoleculesPlatformCompanyViewDetailDrawer
+  <AppCompanyOrganismsPlatformCompanyViewDetailDrawer
     :open="isOpenDrawer"
     :review="props.review"
     @update:open="isOpenDrawer = $event"

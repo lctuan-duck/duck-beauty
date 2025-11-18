@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from "@nuxt/ui";
-import type { ModalAndDrawerPropsCreateCfs } from "../platform/company.review.create.vue";
+import type { ModalAndDrawerPropsCreateCfs } from "../../organimsms/company.review.create.vue";
 
 const props = defineProps<ModalAndDrawerPropsCreateCfs>();
 
